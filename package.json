@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "typescript": "^5.5.4"
+  },
+  "name": "cop4331-small-project",
+  "version": "1.0.0",
+  "main": "src/main/php/index.php",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
