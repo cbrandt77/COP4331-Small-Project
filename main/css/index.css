@@ -2,7 +2,7 @@
 selectors). */
 body {
     margin: 25px;
-    background-color: rgb(240,240,240);
+    background-color: rgb(219, 198, 198);
     font-family: arial, sans-serif;
     font-size: 14px;
 }
@@ -15,7 +15,25 @@ h1 {
 }
 
 /* Applies to all elements with <... class="someclass"> specified. */
-.someclass { color: red; }
+.scripttest { color: red; }
+
+a[href*='html'] {
+    color: #3300ff;
+}
+  
+a[href*='html']:hover {
+    background: #3300ff;
+    color: #00eeff;
+}
+
+.active a[href*='html']{
+    color: #99ff00;
+}
+  
+.active a:hover {
+    background: #99ff00;
+    color: #27531c;
+}
 
 /* Applies to the element with <... id="someid"> specified. */
 #someid { color: green; }
