@@ -3,7 +3,7 @@ selectors). */
 body {
     margin: 25px;
     background-image: url('https://t4.ftcdn.net/jpg/02/43/75/73/360_F_243757367_gBpS6R5c8DB7pL5gw9gi9KXlzFfbdZOA.jpg');
-    /* background-color: rgb(219, 198, 198); */
+    /* background-color: rgb(140, 140, 140); */
     font-family: arial, sans-serif;
     font-size: 14px;
 }
@@ -17,16 +17,28 @@ h1
 }
 
 /* Applies to all elements with <... class="loginform"> specified. */
-.loginform 
+.box
 {
-    color: rgb(195, 0, 255);
+    font-size: 30px;
+    width: 70%;
+    margin-left: 15%;
+    padding-top: 2px;
+    padding-bottom: 10px;
+    background-color: #92929250;
 }
-
 
 /* Applies to all elements with <... class="scripttest"> specified. */
 .scripttest 
 { 
     color: rgb(195, 0, 255);
+    text-align: center;
+}
+
+/* Applies to all elements with <... class="loginform"> specified. */
+.loginform 
+{
+    color: rgb(195, 0, 255);
+    text-align: center;
 }
 
 a[href*='html'] {
