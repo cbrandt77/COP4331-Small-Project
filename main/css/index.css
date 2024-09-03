@@ -2,20 +2,32 @@
 selectors). */
 body {
     margin: 25px;
-    background-color: rgb(219, 198, 198);
+    background-image: url('https://t4.ftcdn.net/jpg/02/43/75/73/360_F_243757367_gBpS6R5c8DB7pL5gw9gi9KXlzFfbdZOA.jpg');
+    /* background-color: rgb(219, 198, 198); */
     font-family: arial, sans-serif;
     font-size: 14px;
 }
 
 /* Applies to all <h1>...</h1> elements. */
-h1 {
+h1 
+{
     font-size: 35px;
     font-weight: normal;
     margin-top: 5px;
 }
 
-/* Applies to all elements with <... class="someclass"> specified. */
-.scripttest { color: red; }
+/* Applies to all elements with <... class="loginform"> specified. */
+.loginform 
+{
+    color: rgb(195, 0, 255);
+}
+
+
+/* Applies to all elements with <... class="scripttest"> specified. */
+.scripttest 
+{ 
+    color: rgb(195, 0, 255);
+}
 
 a[href*='html'] {
     color: #3300ff;
