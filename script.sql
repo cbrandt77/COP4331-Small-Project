@@ -7,5 +7,3 @@ CREATE TABLE `COP4331`.`Contacts`
     `Login` VARCHAR(50) NOT NULL,
     `Password` VARCHAR(50) NOT NULL
 );
-
-INSERT INTO COP4331.Contacts VALUE (null, 'Caleb', 'Brandt', 'cb', 'cbpassword');
