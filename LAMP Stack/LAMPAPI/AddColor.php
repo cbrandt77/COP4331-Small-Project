@@ -4,7 +4,11 @@ include '../php/globals.php';
 header("Access-Control-Allow-Origin: *");
 	$inData = getRequestInfo();
 	
-	$color = $inData["color"];
+	// Added first name, last name, phone number, email fields
+	$firstName = $inData["firstName"];
+	$lastName = $inData["lastName"];
+	$phoneNumber = $inData["phoneNumber"];
+	$email = $inData["email"];
 	$userId = $inData["userId"];
 
 	$conn = getSqlConn();
@@ -15,8 +19,8 @@ header("Access-Control-Allow-Origin: *");
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Colors (UserId,Name) VALUES(?,?)");
-		$stmt->bind_param("ss", $userId, $color);
+		$stmt = $conn->prepare("INSERT into Contacts (UserId, FirstName, LastName, PhoneNumber, Email) VALUES (?, ?, ?, ?, ?)"); // added extra fields into insertion
+		$stmt->bind_param("sssss", $userId, $firstName, $lastName, $phoneNumber, $email); // added extra fields
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
