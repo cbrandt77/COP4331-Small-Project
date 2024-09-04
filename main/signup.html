@@ -2,19 +2,33 @@
 <html lang="en-US">
     <head>
         <title>Contact Manager</title>
-        <script src="/js/main.js"></script>
+        <link href='css/index.css' rel='stylesheet'>
+        <script src="js/main.js"></script>
     </head>
     <body>
-        <p class="scripttest">This is a paragraph</p>
-        <form class="loginform" name="loginform" action="LAMPAPI/Login.php" method="post">
+        <h1>
+            <a href="index.html">Home</a> &ensp;
+            <span class = "active">
+                <a href="signup.html">Sign Up</a> &ensp;
+            </span>
+            <a href="contacts.html">Contacts</a>
+            <br/>
+        </h1>
+
+        <p class="scripttest">Please make an account, we are poor starving children.</p>
+        <form class="loginform" id="loginform" name="loginform">
             <label for="username">Username:</label>
-            <input name="username" id="username"/>
+            <input type="text" name="username" id="username"/>
             <br/>
+
             <label for="password">Password:</label>
-            <input name="password" id="password"/>
+            <input type="password" name="password" id="password"/>
             <br/>
+            
             <button type="submit">Submit</button>
         </form>
+
+        <textarea id="responsearea"></textarea>
     </body>
 </html>
 <!--Cop-->

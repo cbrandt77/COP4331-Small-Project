@@ -2,27 +2,35 @@
 <html lang="en-US">
     <head>
         <title>Contact Manager</title>
+        <link href='css/index.css' rel='stylesheet'>
         <script src="js/main.js"></script>
     </head>
     <body>
-        <p class="scripttest">This is a paragraph</p>
-        <form class="loginform" id="loginform" name="loginform">
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username"/>
+        <h1>
+            <span class = "active">
+                <a href="index.html">Home</a> &ensp;
+            </span>
+            <a href="signup.html">Sign Up</a> &ensp;
+            <a href="contacts.html">Contacts</a>
             <br/>
+        </h1>
+        
+        <div class = "box">
+            <p class="scripttest">Welcome to the Index, have a look around!</p>
+            <form class="loginform" id="loginform" name="loginform">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username"/>
+                <br/>
 
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password"/>
-            <br/>
-            
-            <button type="submit">Submit</button>
-        </form>
-
-        <a href="index.html">Home</a> &ensp;
-        <a href="signup.html">Sign Up</a>
-        <br/>
-
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password"/>
+                <br/>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
         <textarea id="responsearea"></textarea>
+        
     </body>
 </html>
 <!--Cop-->
