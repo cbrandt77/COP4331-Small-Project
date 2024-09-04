@@ -1,6 +1,7 @@
 <?php
 include '../php/globals.php';
 
+header("Access-Control-Allow-Origin: *");
 $username = $_POST['username'];
 $password = $_POST['password'];
 $firstName = $_POST['first_name'];
@@ -26,3 +27,27 @@ if ($conn->connect_error) {
     $stmt->close();
     $conn->close();
 }
+
+/*
+function getRequestInfo()
+{
+    return json_decode(file_get_contents('php://input'), true);
+}
+
+function sendResultInfoAsJson( $obj )
+{
+    header('Content-type: application/json');
+    echo $obj;
+}
+
+function returnWithError( $err )
+{
+    $retValue = '{"firstName":"","lastName":"","username":"","password":"","error":"' . $err . '"}';
+    sendResultInfoAsJson( $retValue );
+}
+
+function returnWithInfo( $searchResults )
+{
+    $retValue = '{"results":[' . $searchResults . '],"error":""}';
+    sendResultInfoAsJson( $retValue );
+*/
