@@ -42,5 +42,3 @@ header("Access-Control-Allow-Origin: *");
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
-?>
