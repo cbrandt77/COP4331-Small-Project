@@ -138,4 +138,8 @@ dist
 # TODO: where does this rule come from?
 docs/_book
 
+**/*/ts/*.js
 
+composer.phar
+
+sshConfigs.xml
