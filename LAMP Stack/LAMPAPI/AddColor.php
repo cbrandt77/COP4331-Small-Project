@@ -5,9 +5,8 @@ header("Access-Control-Allow-Origin: *");
 	$inData = getRequestInfo();
 	
 	// Added first name, last name, phone number, email fields
-	$firstName = $inData["firstName"];
-	$lastName = $inData["lastName"];
-	$phoneNumber = $inData["phoneNumber"];
+	$name = $inData["name"];
+	$phone = $inData["phone"];
 	$email = $inData["email"];
 	$userId = $inData["userId"];
 
@@ -19,8 +18,8 @@ header("Access-Control-Allow-Origin: *");
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Contacts (UserId, FirstName, LastName, PhoneNumber, Email) VALUES (?, ?, ?, ?, ?)"); // added extra fields into insertion
-		$stmt->bind_param("sssss", $userId, $firstName, $lastName, $phoneNumber, $email); // added extra fields
+		$stmt = $conn->prepare("INSERT into Contacts (Name, Phone, Email, UserId) VALUES (?, ?, ?, ?)"); // added extra fields into insertion
+		$stmt->bind_param("ssss", $name, $phone, $email, $userId); // added extra fields
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
