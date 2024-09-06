@@ -1,14 +1,13 @@
-"use strict";
 console.log("initialized main script");
 console.log(document.forms);
 function submitLoginForm() {
     console.log("runnginggg");
-    const loginform = document.forms[0];
+    var loginform = document.forms[0];
     if (loginform == null) {
         console.log("null form");
         return;
     }
-    const data = new FormData(loginform);
+    var data = new FormData(loginform);
     fetch("/LAMPAPI/Login.php", {
         method: "POST",
         body: data
@@ -16,7 +15,7 @@ function submitLoginForm() {
 }
 function changeOtherThing(response) {
     function setResponseAreaText(text) {
-        const elementById = document.getElementById("responsearea");
+        var elementById = document.getElementById("responsearea");
         elementById && (elementById.innerText = text);
     }
     response.body && response.text().then(setResponseAreaText, setResponseAreaText);
@@ -24,8 +23,8 @@ function changeOtherThing(response) {
 document.addEventListener("load", initLoginForm);
 function initLoginForm(event) {
     console.log("runninginit");
-    const loginform = document.forms.namedItem("loginform");
-    loginform ? loginform.addEventListener("submit", (event) => {
+    var loginform = document.forms.namedItem("loginform");
+    loginform ? loginform.addEventListener("submit", function (event) {
         event.preventDefault();
         submitLoginForm();
     }) : console.log("loginform is null");

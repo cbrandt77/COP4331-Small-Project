@@ -6,6 +6,12 @@ header("Access-Control-Allow-Origin: *");
 
 $inData = getRequestInfo();
 
+if ($inData == null) {
+    http_response_code(400);
+    returnWithError("Unable to parse request body as JSON.");
+    return;
+}
+
 $id = 0;
 $firstName = "";
 $lastName = "";
@@ -24,7 +30,12 @@ else
 
 	if( $row = $result->fetch_assoc()  )
 	{
-		returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+        // Spec: /ts/networkhandling.ts:Packets.LoginResponsePacket
+		returnJsonHttpResponse(200, [
+            'firstName' => $row['firstName'],
+            'lastName' => $row['lastName'],
+            'id'=> $row['ID']
+        ]);
 	}
 	else
 	{
@@ -35,10 +46,6 @@ else
 	$conn->close();
 }
 
-function getRequestInfo()
-{
-	return json_decode(file_get_contents('php://input'), true);
-}
 
 function sendResultInfoAsJson( $obj )
 {

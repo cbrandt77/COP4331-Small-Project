@@ -4,7 +4,7 @@
  * @param $success: Boolean
  * @param $data: Object or Array
  */
-function returnJsonHttpResponse($httpCode, $data)
+function returnJsonHttpResponse($httpCode, $data): void
 {
     // remove any string that could create an invalid JSON
     // such as PHP Notice, Warning, logs...
@@ -31,6 +31,11 @@ function returnJsonHttpResponse($httpCode, $data)
     exit();
 }
 
-function getSqlConn() {
+function getSqlConn(): mysqli {
     return new mysqli("127.0.0.1", "TheBest", "WeLoveCOP4331", "COP4331");
+}
+
+function getRequestInfo()
+{
+    return json_decode(file_get_contents('php://input'), true);
 }

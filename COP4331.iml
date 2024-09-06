@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/LAMP Stack" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/colorslab" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
