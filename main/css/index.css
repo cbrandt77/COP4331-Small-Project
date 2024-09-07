@@ -1,11 +1,26 @@
 /* Applies to the entire body of the HTML document (except where overridden by more specific
 selectors). */
-body {
+body 
+{
     margin: 25px;
     background-image: url('https://t4.ftcdn.net/jpg/02/43/75/73/360_F_243757367_gBpS6R5c8DB7pL5gw9gi9KXlzFfbdZOA.jpg');
     /* background-color: rgb(140, 140, 140); */
     font-family: arial, sans-serif;
     font-size: 14px;
+}
+
+/* Body for register.html */
+registerbody
+{
+    background-image: url('https://t4.ftcdn.net/jpg/02/43/75/73/360_F_243757367_gBpS6R5c8DB7pL5gw9gi9KXlzFfbdZOA.jpg');
+    /* background-color: rgb(140, 140, 140); */
+    font-family: arial, sans-serif;
+    font-size: 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 /* Applies to all <h1>...</h1> elements. */
@@ -18,7 +33,7 @@ h1
     color: #99ff00;
 }
 
-/* Applies to all elements with <... class="loginform"> specified. */
+/* Applies to all elements with <... class="box"> specified. */
 .box
 {
     font-size: 30px;
@@ -42,6 +57,21 @@ h1
     color: rgb(195, 0, 255);
     text-align: center;
 }
+
+.wrapper
+{
+    width: 40%;
+    background: blue;
+    margin: auto;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.wrapper h2
+{
+    font-size: 36px;
+}
+
 
 /* a[href*='html'] {
     color: #3300ff;
