@@ -11,9 +11,11 @@ body {
 /* Applies to all <h1>...</h1> elements. */
 h1 
 {
-    font-size: 35px;
+    font-size: 100px;
     font-weight: normal;
+    text-align: center;
     margin-top: 5px;
+    color: #99ff00;
 }
 
 /* Applies to all elements with <... class="loginform"> specified. */
@@ -41,7 +43,7 @@ h1
     text-align: center;
 }
 
-a[href*='html'] {
+/* a[href*='html'] {
     color: #3300ff;
 }
   
