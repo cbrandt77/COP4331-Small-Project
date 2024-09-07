@@ -1,1 +1,1 @@
-export * from './networkhandling'
+export * from './util/networkhandling'

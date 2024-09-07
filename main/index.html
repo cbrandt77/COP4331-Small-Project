@@ -3,7 +3,7 @@
     <head>
         <title>Contact Manager</title>
         <link href='css/index.css' rel='stylesheet'>
-        <script src="js/main.js"></script>
+        <script src="ts/main.js"></script>
     </head>
     <body>
         <h1>
@@ -11,7 +11,7 @@
                 <a href="index.html">Home</a> &ensp;
             </span>
             <a href="signup.html">Sign Up</a> &ensp;
-            <a href="contacts.html">Contacts</a>
+            <a href="contacts.php">Contacts</a>
             <br/>
         </h1>
         
@@ -26,7 +26,7 @@
                 <input type="password" name="password" id="password"/>
                 <br/>
                 
-                <button type="submit">Submit</button>
+                <button type="button" onclick="submitLoginForm()">Submit</button>
             </form>
         </div>
         <textarea id="responsearea"></textarea>

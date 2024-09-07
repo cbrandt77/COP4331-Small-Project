@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "@types/js-cookie": "^3.0.6",
     "apache": "^0.1.0",
-    "bcrypt": "^5.1.1"
+    "bcrypt": "^5.1.1",
+    "js-cookie": "^3.0.5"
   },
   "name": "my-webpack-project",
   "version": "1.0.0",

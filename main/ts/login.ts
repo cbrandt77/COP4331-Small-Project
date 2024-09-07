@@ -1,4 +1,5 @@
-import {Networking, Packets} from "./networkhandling";
+import {Networking, Packets} from "./util/networkhandling";
+import JSCookieLib from 'js-cookie'
 
 namespace Forms {
     import LoginPacket = Packets.LoginPacket;
@@ -23,7 +24,8 @@ namespace Forms {
     
     function onLoginSuccess(packet: LoginResponsePacket) {
         const userId = packet.id;
-        
+        JSCookieLib.set('user_id', userId.toString())
+        document.location.href = "/contacts.php"
     }
     
     function setResponseArea(text: string) {
