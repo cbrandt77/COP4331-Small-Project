@@ -62,7 +62,7 @@ h1
 .wrapper
 {
     width: 40%;
-    background: blue;
+    background: rgba(0, 0, 255, 0.2);
     margin: auto;
     padding: 10px 0;
     text-align: center;
@@ -82,6 +82,10 @@ h1
     width: 200px;
     height: 30px;
     background: white;
+    text-align: center;
+    align-content: center;
+    margin-left: 27%;
+    margin-bottom: 2.5%;
 }
 
 .inputbox input
@@ -90,25 +94,8 @@ h1
     height: 100%;
     background: transparent;
     border: none;
-}
-
-
-/* a[href*='html'] {
-    color: #3300ff;
-}
-  
-a[href*='html']:hover {
-    background: #3300ff;
-    color: #00eeff;
-}
-
-.active a[href*='html']{
-    color: #99ff00;
-}
-  
-.active a:hover {
-    background: #99ff00;
-    color: #27531c;
+    text-align: center;
+    align-content: center;
 }
 
 /* Applies to the element with <... id="someid"> specified. */
