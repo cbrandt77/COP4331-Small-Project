@@ -27,28 +27,8 @@ if ($conn->connect_error) {
 function getRequestInfo()
 {
     $input = file_get_contents("php://input");
-    //echo var_dump($input) . "<br>";
     if(empty($input)) {
         echo "Welcome to the Registration Page";
     }
     return json_decode($input, true);
 }
-
-/*
-function sendResultInfoAsJson( $obj )
-{
-    header('Content-type: application/json');
-    echo $obj;
-}
-
-function returnWithError( $err )
-{
-    $retValue = '{"firstName":"","lastName":"","username":"","password":"","error":"' . $err . '"}';
-    sendResultInfoAsJson( $retValue );
-}
-
-function returnWithInfo( $searchResults )
-{
-    $retValue = '{"results":[' . $searchResults . '],"error":""}';
-    sendResultInfoAsJson( $retValue );
-*/
