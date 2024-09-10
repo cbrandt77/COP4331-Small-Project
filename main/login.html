@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <title>Contact Manager</title>
-        <link href='css/index.css' rel='stylesheet'>
-        <script src="js/main.js"></script>
-    </head>
+<head>
+    <title>Contact Manager</title>
+    <link href='css/index.css' rel='stylesheet'>
+    <script src="js/main.js"></script>
+</head>
 
-    <registerbody>
-        <h2>
+<registerbody>
+    <div class="wrapper">
+        <h2>Log In</h2>
+        <form action="">
+            <div class="inputcombo">
+                <!-- <label class="label" for="Username">Username:</label> -->
+                <input class="inputbox" type="text" placeholder="Username"/>
+            </div>
+
+            <div class="inputcombo">
+                <!-- <label class="label" for="password">Password:</label> -->
+                <input class="inputbox" type="password" placeholder="Password"/>
+            </div>
             
-        </h2>
-    
-        <div class="wrapper">
-            <h2>Log In</h2>
-            <form action="">
-                <div class="inputbox">
-                    <!-- <label for="Username">Username:</label> -->
-                    <input type="text" placeholder="Username"/>
-                </div>
-    
-                <div class="inputbox">
-                    <!-- <label for="password">Password:</label> -->
-                    <input type="password" placeholder="Password"/>
-                </div>
-                
-                <button type="submit">Submit</button>
-                <br/>
-    
-                <a href="index.html">Home</a> &ensp;
-                <a href="register.html">Register</a>
-            </form>
-        </div>
-        <!-- <textarea id="responsearea"></textarea> -->
-    </registerbody>
+            <div class="submitwrap">
+                <button class="submitbox" type="submit">Submit</button>
+            </div>
+
+            <div class="linkwrap">
+                <a class="links" href="index.html">Home</a> &ensp;
+                <a class="links" href="register.html">Sign Up</a>
+            </div>
+        </form>
+    </div>
+</registerbody>
 
 </html>
