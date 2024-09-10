@@ -15,6 +15,7 @@ if ($conn->connect_error)
 }
 else
 {
+    $stmt = $conn->prepare("select Name from Contacts where Name like ? and UserID=?");
     $contactName = "%" . $inData["search"] . "%";
     $stmt->bind_param("ss", $contactName, $inData["userId"]);
     $stmt->execute();
