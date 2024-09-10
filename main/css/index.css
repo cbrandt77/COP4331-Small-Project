@@ -3,20 +3,20 @@ selectors). */
 body 
 {
     margin: 25px;
-    /* background-image: url('https://t4.ftcdn.net/jpg/02/43/75/73/360_F_243757367_gBpS6R5c8DB7pL5gw9gi9KXlzFfbdZOA.jpg'); */
     background-image: url('https://i.pinimg.com/originals/e2/f6/ca/e2f6ca8b9d70379e167cc599b5deb524.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    /* background-color: rgb(140, 140, 140); */
     font-family: arial, sans-serif;
     font-size: 14px;
+    /* background-image: url('https://t4.ftcdn.net/jpg/02/43/75/73/360_F_243757367_gBpS6R5c8DB7pL5gw9gi9KXlzFfbdZOA.jpg'); */
 }
 
 /* Body for register.html */
 registerbody
 {
-    font-family: arial, sans-serif;
+    font-family: Tahoma;
     font-size: 14px;
+    color: #f5d76e;
 
     display: flex;
     justify-content: center;
@@ -32,6 +32,11 @@ h1
     text-align: center;
     margin-top: 5px;
     color: #99ff00;
+}
+
+input
+{
+    padding-left: 5px;
 }
 
 /* Applies to all elements with <... class="box"> specified. */
@@ -61,42 +66,81 @@ h1
 
 .wrapper
 {
-    width: 40%;
-    background: rgba(0, 0, 255, 0.2);
+    border-radius: 20px;
+    width: 30%;
+    background: #dadaff99;
+    /* background: #b3b3da99; */
     margin: auto;
-    padding: 10px 0;
-    text-align: center;
-    align-content: center;
+    padding-bottom: 20px;
+    /* text-align: center; */
+    /* align-content: center; */
 }
 
 .wrapper h2
 {
     font-size: 36px;
+    text-align: center;
+    color: #e7c54a;
+}
+
+
+.inputcombo
+{
+    width: auto;
+    text-align: center;
+    /* margin: 0 auto; */
+    /* background: salmon; */
+}
+
+.submitbox
+{
+    border-radius: 20px;
+    border: 2px solid black;
+    width: 100px;
+    height: 30px;
+    margin-bottom: 2.5%;
+    background: #01ced1;
+    font-family: Tahoma;
+}
+
+.submitwrap
+{
+    text-align: center;
 }
 
 .inputbox
 {
     border-radius: 20px;
     border: 2px solid black;
-    /* padding: 10px;  */
-    width: 200px;
+    width: 60%;
     height: 30px;
-    background: white;
-    text-align: center;
-    align-content: center;
-    margin-left: 27%;
     margin-bottom: 2.5%;
+    font-family: Tahoma;
+    /* background: white; */
+    /* text-align: center; */
+    /* align-content: center; */
 }
 
-.inputbox input
+.linkwrap
 {
-    width: 100%;
+    text-align: center;
+}
+
+.links
+{
+    font-size: 20px;
+    color: #e7c54a;
+}
+
+/* .inputbox input
+{
+    width: 90%;
     height: 100%;
     background: transparent;
     border: none;
     text-align: center;
     align-content: center;
-}
+} */
 
 /* Applies to the element with <... id="someid"> specified. */
 #someid { color: green; }
