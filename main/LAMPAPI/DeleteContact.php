@@ -15,7 +15,7 @@ header("Access-Control-Allow-Origin: *");
 	} 
 	else
 	{
-		$stmt = $conn->prepare("DELETE FROM Contact WHERE ID = ?;"); // delete specific contact
+		$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ?;"); // delete specific contact
 		$stmt->bind_param("ssss", $contactId);
 		$stmt->execute();
 		$stmt->close();
