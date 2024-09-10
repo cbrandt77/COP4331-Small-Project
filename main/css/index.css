@@ -80,7 +80,10 @@ input
 {
     font-size: 36px;
     text-align: center;
-    color: #e7c54a;
+    color: rgb(105, 85, 50);
+    /* -webkit-text-stroke: 1px black; */
+    text-shadow: 1px 1px 2px lightcyan;
+    /* color: #e7c54a; */
 }
 
 
@@ -129,7 +132,8 @@ input
 .links
 {
     font-size: 20px;
-    color: #e7c54a;
+    color: rgb(105, 85, 50);
+    font-weight: 700;
 }
 
 /* .inputbox input
