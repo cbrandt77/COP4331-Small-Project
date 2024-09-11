@@ -29,6 +29,8 @@ namespace Forms {
     }
     
     function setResponseArea(text: string) {
-        document.getElementById('responsearea').innerText = text
+        const area = document.getElementById('loginResult')
+        if (area) 
+            area.innerText = text
     }
 }

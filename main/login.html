@@ -4,14 +4,14 @@
 <head>
     <title>Contact Manager</title>
     <link href='css/index.css' rel='stylesheet'>
-    <script type="text/javascript" src="js/code.js"></script>
+    <script type="text/javascript" src="ts/login.ts"></script>
     <script src="js/main.js"></script>
 </head>
 
-<registerbody>
+<body class="registerbody">
     <div class="wrapper">
         <h2>Login</h2>
-        <form action="">
+        <form name="login">
             <div class="inputcombo">
                 <!-- <label class="label" for="Username">Username:</label> -->
                 <input class="inputbox" type="text" id="loginName" placeholder="Username"/>
@@ -23,7 +23,8 @@
             </div>
             
             <div class="submitwrap">
-                <button class="submitbox" type="submit" id="loginButton" onclick="doLogin();">Submit</button>
+                <!-- <button type="button" id="loginButton" class="buttons" onclick="doLogin();">Submit</button> -->
+                <button class="submitbox" type="submit" id="loginButton" onclick="sendLoginForm();">Submit</button>
             </div>
 
             <span id="loginResult"></span>
@@ -35,6 +36,6 @@
         </form>
     </div>
     <!-- <textarea id="responsearea"></textarea> -->
-</registerbody>
+</body>
 
 </html>
