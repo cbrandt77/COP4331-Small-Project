@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <title>Contact Manager</title>
-        <link href='css/index.css' rel='stylesheet'>
-        <script type="module" src="ts/pages/contacts.ts"></script>
-    </head>
-    <body>
-        <h1>
-		    <a href="index.html">Home</a> &ensp;
-		    <a href="register.html">Sign Up</a> &ensp;
-		    <span class = "active">
-		        <a href="contacts.html">Contacts</a>
-		    </span>
-		    <br/>
-        </h1>
-        <div id="if_has_access">
-	        <form name="searchbar">
-		        <input type="text" placeholder="Search"/>
-		        <button type="button" id="send_search">Insert Magnifying Glass Icon Here</button>
-	        </form>
-	        <button id="add_contact">Add Contact (Plus Button)</button>
-	        <table id="contacts_table">
-		        <tr>
-			        <td>ID</td>
-			        <td>Name</td>
-			        <td>Phone Number</td>
-			        <td>Email Address</td>
-			        <td><button id="editcontact">EDIT</button></td>
-			        <td><button id="deletecontact">DELETE</button></td>
-		        </tr>
-	        </table>
-        </div>
-        <div id="if_no_access">
-	        <h1>You do not have access to this page. Please <a href="login.html">log in</a> or <a href="register.html">register</a>!</h1>
-        </div>
-    </body>
+
+<head>
+	<title>Contact Manager</title>
+	<link href='css/index.css' rel='stylesheet'>
+	<script type="module" src="ts/pages/contacts.ts"></script>
+</head>
+
+<body class="contactsbody">
+	<h1>
+		<a href="index.html">Home</a>
+		<!-- <a href="register.html">Sign Up</a> &ensp;
+		<span class = "active">
+			<a href="contacts.html">Contacts</a>
+		</span>
+		<br/> -->
+	</h1>
+
+	<div id="if_has_access">
+		<form name="searchbar">
+			<input type="text" placeholder="Search"/>
+			<button type="button" id="send_search">Insert Magnifying Glass Icon Here</button>
+		</form>
+		<button id="add_contact">Add Contact (Plus Button)</button>
+		<table id="contacts_table">
+			<tr>
+				<td>ID</td>
+				<td>Name</td>
+				<td>Phone Number</td>
+				<td>Email Address</td>
+				<td><button id="editcontact">EDIT</button></td>
+				<td><button id="deletecontact">DELETE</button></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="nocookie" id="if_no_access">
+		<h1>You do not have access to this page. Please <a class="links2" href="login.html">log in</a> or <a class="links2" href="register.html">register</a>!</h1>
+	</div>
+	
+</body>
 </html>
 <!--Cop-->
 
