@@ -103,7 +103,6 @@ dist
 
 # vuepress v2.x temp and cache directory
 .temp
-.cache
 
 # Docusaurus cache and generated files
 .docusaurus
@@ -138,8 +137,10 @@ dist
 # TODO: where does this rule come from?
 docs/_book
 
-**/*/ts/*.js
+**/ts/**/*.js
 
 composer.phar
 
 sshConfigs.xml
+
+vendor/*
