@@ -1,4 +1,4 @@
-import {LoginConfirmedPacket} from "~types/packets";
+import {LoginConfirmedPacket} from "types/packets";
 import JSCookieLib from "js-cookie";
 
 export function onLoginSuccess(packet: LoginConfirmedPacket) {

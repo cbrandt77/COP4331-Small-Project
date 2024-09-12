@@ -1,7 +1,7 @@
-import {Networking} from "~util/networkhandling";
-import {ErrorPacket, LoginConfirmedPacket, PacketFunctions, RegistrationPacket} from "~types/packets";
+import {Networking} from "util/networkhandling";
+import {ErrorPacket, LoginConfirmedPacket, PacketFunctions, RegistrationPacket} from "types/packets";
 import instanceOfError = PacketFunctions.instanceOfError;
-import {onLoginSuccess} from "~util/cookies";
+import {onLoginSuccess} from "util/cookies";
 
 function doRegister() {
     const formdata = new FormData(document.forms.item(0))

@@ -1,6 +1,6 @@
 import {getUserIdCookie} from "../main";
-import {Networking} from "~util/networkhandling";
-import {ContactSearchResponsePacket, ContactsSearchQueryPacket} from "~types/packets";
+import {Networking} from "util/networkhandling";
+import {ContactSearchResponsePacket, ContactsSearchQueryPacket} from "types/packets";
 
 function checkCookie() {
     if (getUserIdCookie()) {
