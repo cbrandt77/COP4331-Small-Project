@@ -1,4 +1,10 @@
 <?php
+include 'packets.php';
+
+function returnWithError($code, $reason) {
+    returnJsonHttpResponse(200, new ErrorPacket($code, $reason));
+}
+
 /*
  * returnJsonHttpResponse, source: https://stackoverflow.com/a/62834046
  * @param $success: Boolean
@@ -38,6 +44,17 @@ function getSqlConn(): mysqli {
 function getRequestInfo()
 {
     return json_decode(file_get_contents('php://input'), true);
+}
+
+/**
+ * @template Type
+ * @param mixed<Type> $holder
+ * @return Type
+ */
+function expectPacketType(mixed $holder) {
+    $request = getRequestInfo();
+    foreach ($request as $key => $value) $holder->{$key} = $value;
+    return $holder;
 }
 
 function setCORSHeaders() {

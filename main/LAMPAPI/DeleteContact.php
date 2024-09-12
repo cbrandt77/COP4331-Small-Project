@@ -1,36 +1,26 @@
 <?php
 include '../php/global_functions.php';
+include '../php/packets.php';
 
-header("Access-Control-Allow-Origin: *");
-$inData = getRequestInfo();
+setCORSHeaders();
 
-// get ID of contact to be deleted
-$contactId = $inData["contactId"];
+$inData = expectPacketType(new ContactDeletePacket());
 
 $conn = getSqlConn();
 
 if ($conn->connect_error)
 {
-    returnWithError( $conn->connect_error );
+    http_response_code(500);
+    returnWithError(1, $conn->connect_error);
 }
 else
 {
-    $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ?;"); // delete specific contact
-    $stmt->bind_param("ssss", $contactId);
+    $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID=? AND UserID=?;"); // delete specific contact
+    $stmt->bind_param("ss", $inData->contact_id, $inData->user_id);
     $stmt->execute();
     $stmt->close();
+
     $conn->close();
-    returnWithError("");
-}
 
-function sendResultInfoAsJson( $obj )
-{
-    header('Content-type: application/json');
-    echo $obj;
-}
-
-function returnWithError( $err )
-{
-    $retValue = '{"error":"' . $err . '"}';
-    sendResultInfoAsJson( $retValue );
+    http_response_code(200);
 }
