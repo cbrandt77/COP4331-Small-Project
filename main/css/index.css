@@ -27,12 +27,12 @@ body
 .contactsbody
 {
     font-family: Tahoma;
-    font-size: 14px;
+    /* font-size: 14px; */
     color: rgb(150, 112, 48);
 
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     min-height: 100vh;
 }
 
@@ -43,7 +43,7 @@ h1
     font-weight: normal;
     text-align: center;
     margin-top: 5px;
-    color: rgb(150, 112, 48);
+    color: crimson;
 }
 
 input
@@ -159,13 +159,13 @@ input
 
 .links2
 {
-    color: rgb(150, 112, 48);
+    color: crimson;
     font-weight: 700;
 }
 
 .nocookie
 {
-    color: rgb(150, 112, 48);
+    /* background: blueviolet; */
 }
 
 #icon
@@ -174,15 +174,35 @@ input
     width: 15px;
 }
 
-/* .inputbox input
+.contactstopbar
 {
-    width: 90%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    text-align: center;
-    align-content: center;
-} */
+    display: flex;
+    font-size: 50px;
+    padding-left: 10px;
+    width: 100%;
+    border-radius: 20px;
+    background: #dadaff99;
 
-/* Applies to the element with <... id="someid"> specified. */
-#someid { color: green; }
+}
+
+.homebtn
+{
+    /* background: blue; */
+}
+
+.searchstuff
+{
+    width: 50%;
+    margin: auto;
+    /* background: red; */
+}
+
+.searchbox
+{
+    border-radius: 20px;
+    border: 2px solid black;
+    width: 75%;
+    height: 30px;
+    margin-bottom: 2.5%;
+    font-family: Tahoma;
+}
