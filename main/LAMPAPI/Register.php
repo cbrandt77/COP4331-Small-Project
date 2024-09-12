@@ -7,29 +7,23 @@ $inData = getRequestInfo();
 $conn = getSqlConn();
 
 if ($conn->connect_error) {
-    returnJsonHttpResponse(200, $conn->connect_error);
+    returnJsonHttpResponse(200, ['error_code'=>2, 'reason'=>$conn->connect_error]);
 } else {
     $stmt = $conn->prepare("Insert Into Users (FirstName, LastName, Login, Password) VALUE (?, ?, ?, ?);");
-    $stmt->bind_param("ssss", $inData["firstName"], $inData["lastName"], $inData["Login"], $inData["Password"]);
+    $stmt->bind_param("ssss", $inData["first_name"], $inData["last_name"], $inData["username"], $inData["password"]);
     $stmt->execute();
-
-    if ($stmt->error) {
-        echo $stmt->error;
-    } else if ($stmt->get_result()) {
-        echo $stmt->get_result();
-    } else {
-        echo "Successful Register";
-
-    }
+    $stmt->close();
+    $stmt = $conn->prepare("SELECT (ID, FirstName, LastName) FROM Users WHERE Login=? AND Password=?");
+    $stmt->bind_param("ss", $inData["username"], $inData["password"]);
+    $stmt->execute();
+    $res = $stmt->get_result()->fetch_assoc();
     $stmt->close();
     $conn->close();
+
+    returnJsonHttpResponse(200, [
+        "id"=>$res,
+        "first_name"=>$res["FirstName"],
+        "last_name"=>$res["LastName"]
+    ]);
 }
 
-function getRequestInfo()
-{
-    $input = file_get_contents("php://input");
-    if(empty($input)) {
-        echo "Welcome to the Registration Page";
-    }
-    return json_decode($input, true);
-}
