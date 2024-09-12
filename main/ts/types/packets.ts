@@ -35,6 +35,7 @@ export interface ErrorPacket {
     reason: string
 }
 
+
 export class RegistrationPacket {
     username: string
     password: string
@@ -66,13 +67,14 @@ export class ContactsSearchQueryPacket {
 export interface ContactSearchResponsePacket {
     contacts: Contact[]
 }
+
 namespace ContactSearchResponsePacket {
     function addRow(this: ContactSearchResponsePacket, tablerow: HTMLTableElement) {
         const row = tablerow.insertRow();
         for (let k in this) {
             let cell = row.insertCell();
         }
-         //TODO
+        //TODO
     }
 }
 
@@ -91,6 +93,14 @@ export class ContactEditPacket {
 export namespace PacketFunctions {
     export function instanceOfError(object: any): object is ErrorPacket {
         return 'error_code' in object;
+    }
+    
+    export function filterErrors<T>(obj: T | ErrorPacket): T | Promise<never> {
+        if (instanceOfError(obj)) {
+            return Promise.reject(obj.reason);
+        } else {
+            return obj;
+        }
     }
     
     export async function encryptString(unhashed: string): Promise<string> {

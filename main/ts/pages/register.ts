@@ -7,7 +7,7 @@ function doRegister() {
     const formdata = new FormData(document.forms.item(0))
     Networking.postToLAMPAPI(RegistrationPacket.fromFormData(formdata), "Register")
               .then(response => response.ok ? response.json() : Promise.reject(response.status))
-              .then((obj: LoginConfirmedPacket | ErrorPacket) => instanceOfError(obj) ? Promise.reject(obj.reason) : obj)
+              .then(PacketFunctions.filterErrors)
               .then(onLoginSuccess)
               .catch(onLoginFailure)
 }
