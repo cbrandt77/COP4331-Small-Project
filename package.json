@@ -3,6 +3,8 @@
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.5.4",
     "buffer": "^6.0.3",
+    "copyfiles": "^2.4.1",
+    "cpy-cli": "^5.0.0",
     "crypto-browserify": "^3.12.0",
     "events": "^3.3.0",
     "os-browserify": "^0.3.0",
@@ -19,7 +21,14 @@
   },
   "scripts": {
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build; npm run internal:copy_lamp; npm run internal:copy_php",
+    "prod": "npm run build; npm run internal:copy_to_server",
+    "internal:copy_lamp": "cpy \"main/LAMPAPI/**/*\" dist/LAMPAPI",
+    "internal:copy_php": "cpy \"main/php/**/*\" dist/php",
+    "internal:copy_to_server": "scp -r dist root@104.248.229.249:/var/www/html"
   },
-  "source": ["main/index.html", "main/contacts.php"]
+  "source": [
+    "main/index.html",
+    "main/contacts.html"
+  ]
 }
