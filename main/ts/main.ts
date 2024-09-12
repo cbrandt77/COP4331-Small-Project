@@ -1,43 +1,10 @@
-console.log("initialized main script")
+import Cokie_uwu from 'js-cookie'
 
-console.log(document.forms)
 
-function submitLoginForm() {
-    console.log("runnginggg")
-    const loginform = document.forms[0];
-    if (loginform == null) {
-        console.log("null form")
-        return;
-    }
-    
-    const data = new FormData(loginform);
-    
-    fetch("/LAMPAPI/Login.php", {
-        method: "POST",
-        body: data
-    }).then(
-        changeOtherThing,
-        null
-    );
+export namespace Constants {
+    export const COOKIE_USERID = "user_id"
 }
 
-function changeOtherThing(response: Response) {
-    function setResponseAreaText(text: string) {
-        const elementById = document.getElementById("responsearea");
-        elementById && (elementById.innerText = text);
-    }
-    
-    response.body && response.text().then(setResponseAreaText, setResponseAreaText)
+export function getUserIdCookie() {
+    return Cokie_uwu.get(Constants.COOKIE_USERID)
 }
-
-document.addEventListener("load", initLoginForm)
-
-function initLoginForm(event: Event) {
-    console.log("runninginit")
-    const loginform = document.forms.namedItem("loginform");
-    loginform ? loginform.addEventListener("submit", (event) => {
-        event.preventDefault();
-        submitLoginForm();
-    }) : console.log("loginform is null")
-}
-

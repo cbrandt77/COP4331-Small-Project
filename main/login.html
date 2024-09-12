@@ -4,8 +4,7 @@
 <head>
     <title>Contact Manager</title>
     <link href='css/index.css' rel='stylesheet'>
-    <script type="text/javascript" src="ts/login.ts"></script>
-    <script src="js/main.js"></script>
+    <script type="module" src="ts/pages/login.ts"></script>
 </head>
 
 <body class="registerbody">
@@ -24,7 +23,7 @@
             
             <div class="submitwrap">
                 <!-- <button type="button" id="loginButton" class="buttons" onclick="doLogin();">Submit</button> -->
-                <button class="submitbox" type="submit" id="loginButton" onclick="sendLoginForm();">Submit</button>
+                <button class="submitbox" type="submit" id="loginButton">Submit</button>  <!-- onclick set by javascript -->
             </div>
 
             <span id="loginResult"></span>

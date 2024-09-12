@@ -4,7 +4,7 @@
  * @param $success: Boolean
  * @param $data: Object or Array
  */
-function returnJsonHttpResponse($httpCode, $data)
+function returnJsonHttpResponse($httpCode, $data): void
 {
     // remove any string that could create an invalid JSON
     // such as PHP Notice, Warning, logs...

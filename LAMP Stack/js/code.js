@@ -41,8 +41,8 @@ function doLogin()
 					return;
 				}
 		
-				firstName = jsonObject['firstName'] || "none";
-				lastName = jsonObject['lastName'] || "none";
+				firstName = jsonObject['first_name'] || "none";
+				lastName = jsonObject['last_name'] || "none";
 
 				saveCookie();
 	
