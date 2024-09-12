@@ -23,7 +23,7 @@ namespace Forms {
         if (instanceOfError(error) && error.error_code == 0) {
             setResponseArea(error.reason)
         } else {
-            setResponseArea(`An unexpected error occurred: ${error}`)
+            setResponseArea(`An unexpected error occurred: ${JSON.stringify(error)}`)
         }
         
     }

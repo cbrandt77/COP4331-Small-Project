@@ -15,20 +15,21 @@
 		    <br/>
         </h1>
         <div id="if_has_access">
-	        <p class="scripttest">Give us your information, we love you so much.</p>
-	        <form class="loginform" id="loginform" name="loginform">
-		        <label for="username">Username:</label>
-		        <input type="text" name="username" id="username"/>
-		        <br/>
-		        
-		        <label for="password">Password:</label>
-		        <input type="password" name="password" id="password"/>
-		        <br/>
-		        
-		        <button type="submit">Submit</button>
+	        <form name="searchbar">
+		        <input type="text" placeholder="Search"/>
+		        <button type="button" id="send_search">Insert Magnifying Glass Icon Here</button>
 	        </form>
-	        
-	        <textarea id="responsearea"></textarea>
+	        <button id="add_contact">Add Contact (Plus Button)</button>
+	        <table id="contacts_table">
+		        <tr>
+			        <td>ID</td>
+			        <td>Name</td>
+			        <td>Phone Number</td>
+			        <td>Email Address</td>
+			        <td><button id="editcontact">EDIT</button></td>
+			        <td><button id="deletecontact">DELETE</button></td>
+		        </tr>
+	        </table>
         </div>
         <div id="if_no_access">
 	        <h1>You do not have access to this page. Please <a href="login.html">log in</a> or <a href="register.html">register</a>!</h1>
