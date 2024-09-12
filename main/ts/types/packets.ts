@@ -77,7 +77,7 @@ export class ContactEditPacket {
 
 export namespace PacketFunctions {
     export function instanceOfError(object: any): object is ErrorPacket {
-        return 'error' in object;
+        return 'error_code' in object;
     }
     
     export async function encryptString(unhashed: string): Promise<string> {

@@ -1,5 +1,5 @@
 export namespace Networking {
-    const BASE_URL = "https://cop4331team21.site"
+    const BASE_URL = "http://cop4331team21.site"
     
     export function postJsonToServer(payload: object | BodyInit, subdir: string,
                                      additionalHeaders?: { [key: string]: any }): Promise<Response> {

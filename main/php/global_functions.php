@@ -30,3 +30,12 @@ function returnJsonHttpResponse($httpCode, $data): void
     // making sure nothing is added
     exit();
 }
+
+function getSqlConn(): mysqli {
+    return new mysqli("127.0.0.1", "TheBest", "WeLoveCOP4331", "COP4331");
+}
+
+function getRequestInfo()
+{
+    return json_decode(file_get_contents('php://input'), true);
+}

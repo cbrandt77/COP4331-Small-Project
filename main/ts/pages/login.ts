@@ -3,19 +3,29 @@ import {LoginPacket, LoginConfirmedPacket, ErrorPacket, PacketFunctions} from 't
 import JSCookieLib from 'js-cookie'
 
 namespace Forms {
-    export function sendLoginForm(form: HTMLFormElement) {
+    import instanceOfError = PacketFunctions.instanceOfError;
+    
+    export function sendLoginForm(): void {
+        setResponseArea("")
+        
+        const form = document.forms.namedItem("login")
         const data = new FormData(form)
         
         LoginPacket.fromFormData(data)
                    .then((packet: LoginPacket) => Networking.postToLAMPAPI(packet, 'Login'))
                    .then((response: Response) => response.ok ? response.json() : Promise.reject(response.status))
-                   .then((json: LoginConfirmedPacket | ErrorPacket) => (PacketFunctions.instanceOfError(json)) ? Promise.reject(json['reason']) : json)
+                   .then((json: LoginConfirmedPacket | ErrorPacket) => (PacketFunctions.instanceOfError(json)) ? Promise.reject(json) : json)
                    .then(onLoginSuccess)
                    .catch(onLoginError);
     }
     
-    function onLoginError(reason: string) {
-        setResponseArea(`An unexpected error occurred: ${reason}`)
+    function onLoginError(error: ErrorPacket | any) {
+        if (instanceOfError(error) && error.error_code == 0) {
+            setResponseArea(error.reason)
+        } else {
+            setResponseArea(`An unexpected error occurred: ${error}`)
+        }
+        
     }
     
     function onLoginSuccess(packet: LoginConfirmedPacket) {
@@ -31,9 +41,4 @@ namespace Forms {
     }
 }
 
-const submitButton = document.forms
-                        .namedItem("login")
-                        ?.elements
-                        .namedItem("button");
-if (submitButton instanceof HTMLButtonElement)
-    submitButton?.addEventListener("click", () => Forms.sendLoginForm(this))
+document.getElementById("loginButton").onclick = Forms.sendLoginForm

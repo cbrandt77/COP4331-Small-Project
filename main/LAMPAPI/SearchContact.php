@@ -1,5 +1,5 @@
 <?php
-include '../php/globals.php';
+include '../php/global_functions.php';
 
 header("Access-Control-Allow-Origin: *");
 

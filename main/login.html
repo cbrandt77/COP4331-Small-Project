@@ -13,17 +13,16 @@
         <form name="login">
             <div class="inputcombo">
                 <!-- <label class="label" for="Username">Username:</label> -->
-                <input class="inputbox" type="text" id="loginName" placeholder="Username"/>
+                <input class="inputbox" type="text" id="loginName" name="username" placeholder="Username"/>
             </div>
 
             <div class="inputcombo">
                 <!-- <label class="label" for="password">Password:</label> -->
-                <input class="inputbox" type="password" id="loginPassword" placeholder="Password"/>
+                <input class="inputbox" type="password" id="loginPassword" name="password" placeholder="Password"/>
             </div>
             
             <div class="submitwrap">
-                <!-- <button type="button" id="loginButton" class="buttons" onclick="doLogin();">Submit</button> -->
-                <button class="submitbox" type="submit" id="loginButton">Submit</button>  <!-- onclick set by javascript -->
+                <button class="submitbox" type="button" id="loginButton">Submit</button>  <!-- onclick set by javascript -->
             </div>
 
             <span id="loginResult"></span>

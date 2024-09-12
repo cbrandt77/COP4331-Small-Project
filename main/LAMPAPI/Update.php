@@ -1,44 +1,44 @@
 <?php
-include '../php/globals.php';
+include '../php/global_functions.php';
 
 header("Access-Control-Allow-Origin: *");
-	$inData = getRequestInfo();
-	
-	// Added first name, last name, phone number, email fields
-	$name = $inData["name"];
-	$phone = $inData["phone"];
-	$email = $inData["email"];
-	$userId = $inData["userId"];
-    $contactId = $inData["contactId"];
+$inData = getRequestInfo();
 
-	$conn = getSqlConn();
+// Added first name, last name, phone number, email fields
+$name = $inData["name"];
+$phone = $inData["phone"];
+$email = $inData["email"];
+$userId = $inData["userId"];
+$contactId = $inData["contactId"];
 
-    if ($conn->connect_error)
-	{
-		returnWithError( $conn->connect_error );
-	} 
-	else
-	{
-		$stmt = $conn->prepare("UPDATE Contacts SET Name='$name', Phone='$phone', Email='$email' WHERE UserId='userId' AND ID='contactId'"); // added extra fields into insertion
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
-	}
+$conn = getSqlConn();
 
-	function getRequestInfo()
-	{
-		return json_decode(file_get_contents('php://input'), true);
-	}
+if ($conn->connect_error)
+{
+    returnWithError( $conn->connect_error );
+}
+else
+{
+    $stmt = $conn->prepare("UPDATE Contacts SET Name='$name', Phone='$phone', Email='$email' WHERE UserId='userId' AND ID='contactId'"); // added extra fields into insertion
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+    returnWithError("");
+}
 
-	function sendResultInfoAsJson( $obj )
-	{
-		header('Content-type: application/json');
-		echo $obj;
-	}
-	
-	function returnWithError( $err )
-	{
-		$retValue = '{"error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
+function getRequestInfo()
+{
+    return json_decode(file_get_contents('php://input'), true);
+}
+
+function sendResultInfoAsJson( $obj )
+{
+    header('Content-type: application/json');
+    echo $obj;
+}
+
+function returnWithError( $err )
+{
+    $retValue = '{"error":"' . $err . '"}';
+    sendResultInfoAsJson( $retValue );
+}

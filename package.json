@@ -21,11 +21,14 @@
   },
   "scripts": {
     "start": "parcel",
-    "build": "parcel build; npm run internal:copy_lamp; npm run internal:copy_php",
-    "prod": "npm run build; npm run internal:copy_to_server",
-    "internal:copy_lamp": "cpy \"main/LAMPAPI/**/*\" dist/LAMPAPI",
-    "internal:copy_php": "cpy \"main/php/**/*\" dist/php",
-    "internal:copy_to_server": "scp -r dist root@104.248.229.249:/var/www/html"
+    "build": "parcel build; npm run internal:dist",
+    "prod": "npm run build; npm run internal:server",
+    "internal:dist": "npm run internal:dist:lamp; npm run internal:dist:php",
+    "internal:dist:lamp": "cpy \"main/LAMPAPI/**/*\" dist/LAMPAPI",
+    "internal:dist:php": "cpy \"main/php/**/*\" dist/php",
+    "internal:server:remove_old": "ssh root@104.248.229.249 \"rm -r /var/www/html/*\"",
+    "internal:server:upload": "scp -r dist/* root@104.248.229.249:/var/www/html/",
+    "internal:server": "npm run internal:server:remove_old; npm run internal:server:upload"
   },
   "source": [
     "main/index.html",
