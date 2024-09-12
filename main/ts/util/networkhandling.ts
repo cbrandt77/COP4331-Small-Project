@@ -15,7 +15,7 @@ export namespace Networking {
         if (typeof payload === 'object')
             payload = JSON.stringify(payload)
         
-        return fetch(BASE_URL + subdir, {
+        return fetch(/*BASE_URL +*/ subdir, {
             method: "POST",
             body: payload,
             headers: headersObj
