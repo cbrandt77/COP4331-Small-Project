@@ -2,7 +2,7 @@ import {Networking} from "util/networkhandling";
 import {LoginPacket, LoginConfirmedPacket, ErrorPacket, PacketFunctions} from 'types/packets'
 import JSCookieLib from 'js-cookie'
 
-namespace Forms {
+export namespace Forms {
     import instanceOfError = PacketFunctions.instanceOfError;
     
     export function sendLoginForm(): void {
@@ -28,7 +28,7 @@ namespace Forms {
         
     }
     
-    function onLoginSuccess(packet: LoginConfirmedPacket) {
+    export function onLoginSuccess(packet: LoginConfirmedPacket) {
         const userId = packet.id;
         JSCookieLib.set('user_id', userId.toString())
         document.location.href = "contacts.html"

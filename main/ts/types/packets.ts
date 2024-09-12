@@ -47,6 +47,10 @@ export class RegistrationPacket {
         this.first_name = first_name;
         this.last_name = last_name;
     }
+    
+    static fromFormData(data: FormData) {
+        return new RegistrationPacket(<string>data.get("username"), <string>data.get("password"), <string>data.get("first_name"), <string>data.get("last_name"))
+    }
 }
 
 export class ContactsSearchQueryPacket {
@@ -61,6 +65,15 @@ export class ContactsSearchQueryPacket {
 
 export interface ContactSearchResponsePacket {
     contacts: Contact[]
+}
+namespace ContactSearchResponsePacket {
+    function addRow(this: ContactSearchResponsePacket, tablerow: HTMLTableElement) {
+        const row = tablerow.insertRow();
+        for (let k in this) {
+            let cell = row.insertCell();
+        }
+         //TODO
+    }
 }
 
 export interface ContactPacket {
