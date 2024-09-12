@@ -168,6 +168,12 @@ input
     color: rgb(150, 112, 48);
 }
 
+#icon
+{
+    height: 15px;  
+    width: 15px;
+}
+
 /* .inputbox input
 {
     width: 90%;
