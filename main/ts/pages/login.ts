@@ -1,8 +1,8 @@
 import {Networking} from "util/networkhandling";
 import {LoginPacket, LoginConfirmedPacket, ErrorPacket, PacketFunctions} from 'types/packets'
-import JSCookieLib from 'js-cookie'
+import {onLoginSuccess} from "~util/cookies";
 
-export namespace Forms {
+namespace Forms {
     import instanceOfError = PacketFunctions.instanceOfError;
     
     export function sendLoginForm(): void {
@@ -28,11 +28,7 @@ export namespace Forms {
         
     }
     
-    export function onLoginSuccess(packet: LoginConfirmedPacket) {
-        const userId = packet.id;
-        JSCookieLib.set('user_id', userId.toString())
-        document.location.href = "contacts.html"
-    }
+    
     
     function setResponseArea(text: string) {
         const area = document.getElementById('loginResult')
