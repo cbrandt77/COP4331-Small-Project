@@ -1,1 +1,2 @@
 import './networkhandling'
+import './cookies'

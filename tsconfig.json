@@ -6,9 +6,6 @@
     "target": "es5",
     "allowJs": true,
     "isolatedModules": true,
-    "baseUrl": "./main/ts",
-    "paths": {
-      "~*": ["./*"]
-    }
+    "baseUrl": "./main/ts"
   }
 }

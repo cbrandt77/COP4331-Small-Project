@@ -1,6 +1,6 @@
 import {Networking} from "util/networkhandling";
 import {LoginPacket, LoginConfirmedPacket, ErrorPacket, PacketFunctions} from 'types/packets'
-import {onLoginSuccess} from "~util/cookies";
+import {onLoginSuccess} from "util/cookies";
 
 namespace Forms {
     import instanceOfError = PacketFunctions.instanceOfError;
