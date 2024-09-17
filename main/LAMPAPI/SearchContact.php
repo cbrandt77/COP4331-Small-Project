@@ -1,39 +1,36 @@
 <?php
 include '../php/global_functions.php';
-include '../php/packets.php';
 
-setCORSHeaders();
+header("Access-Control-Allow-Origin: *");
+$inData = getRequestInfo();
 
-$inData = expectPacketType(new ContactsSearchQueryPacket());
+// get ID of contact to be deleted
+$contactId = $inData["contactId"];
 
 $conn = getSqlConn();
+
 if ($conn->connect_error)
 {
-    returnJsonHttpResponse(500, new ErrorPacket(1, $conn->connect_error));
+    returnWithError( $conn->connect_error );
 }
-else {
-    $stmt = $conn->prepare("select * from Contacts where Name like ? and UserID=?");
-    $contactName = "%" . $inData->search_term . "%";
-    $stmt->bind_param("ss", $contactName, $inData->user_id);
+else
+{
+    $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ?;"); // delete specific contact
+    $stmt->bind_param("i", $contactId);
     $stmt->execute();
-
-    $result = $stmt->get_result();
-
-    /** @var OutgoingContactObject[] $arr */
-    $arr = [];
-
-
-    while (($row = $result->fetch_object('\SqlContact'))) {
-        $arr[] = OutgoingContactObject::fromSqlContact($row);
-    }
-
     $stmt->close();
     $conn->close();
+    returnWithError("");
+}
 
-    if (count($arr) == 0) {
-        returnJsonHttpResponse(200, new ErrorPacket(0, "No contacts found."));
-    } else {
-        returnJsonHttpResponse(200, new ContactSearchResponsePacket($arr));
-    }
+function sendResultInfoAsJson( $obj )
+{
+    header('Content-type: application/json');
+    echo $obj;
+}
 
+function returnWithError( $err )
+{
+    $retValue = '{"error":"' . $err . '"}';
+    sendResultInfoAsJson( $retValue );
 }
