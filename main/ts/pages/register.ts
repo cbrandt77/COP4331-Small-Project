@@ -5,7 +5,9 @@ import {onLoginSuccess} from "util/cookies";
 
 function doRegister() {
     const formdata = new FormData(document.forms.item(0))
-    Networking.postToLAMPAPI(RegistrationPacket.fromFormData(formdata), "Register")
+    const packet = RegistrationPacket.fromFormData(formdata)
+    console.log(packet.toString())
+    Networking.postToLAMPAPI(packet, "Register")
               .then(response => response.ok ? response.json() : Promise.reject(response.status))
               .then(PacketFunctions.filterErrors)
               .then(onLoginSuccess)

@@ -1,39 +1,25 @@
 <?php
-    include '../php/global_functions.php';
+include '../php/global_functions.php';
+include '../php/packets.php';
 
-    header("Access-Control-Allow-Origin: *");
-	$inData = getRequestInfo();
-	
-	// Added first name, last name, phone number, email fields
-	$name = $inData["name"];
-	$phone = $inData["phone"];
-	$email = $inData["email"];
-	$userId = $inData["userId"];
+setCORSHeaders();
 
-	$conn = getSqlConn();
+$inData = expectPacketType(new ContactAddPacket());
 
-    if ($conn->connect_error)
-	{
-		returnWithError( $conn->connect_error );
-	} 
-	else
-	{
-		$stmt = $conn->prepare("INSERT into Contacts (Name, Phone, Email, UserId) VALUES (?, ?, ?, ?)"); // added extra fields into insertion
-		$stmt->bind_param("ssss", $name, $phone, $email, $userId); // added extra fields
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
-	}
+$conn = getSqlConn();
 
-	function sendResultInfoAsJson( $obj )
-	{
-		header('Content-type: application/json');
-		echo $obj;
-	}
-	
-	function returnWithError( $err )
-	{
-		$retValue = '{"error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
+if ($conn->connect_error)
+{
+    returnJsonHttpResponse(500, $conn->connect_error);
+}
+else
+{
+    $stmt = $conn->prepare("INSERT into Contacts (Name, Phone, Email, UserId) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $inData->name, $inData->phone_number, $inData->email_address, $inData->user_id);
+    $stmt->execute();
+    $stmt->close();
+
+    $conn->close();
+
+    http_response_code(200);
+}

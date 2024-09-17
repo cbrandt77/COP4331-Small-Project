@@ -144,3 +144,4 @@ composer.phar
 sshConfigs.xml
 
 vendor/*
+/buildscripts/*.mjs

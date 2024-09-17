@@ -1,50 +1,27 @@
 <?php
 include '../php/global_functions.php';
+include '../php/packets.php';
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Content-Type,*");
+setCORSHeaders();
 
-$inData = getRequestInfo();
+$inData = expectPacketType(new LoginPacket());
 
-# how to connect to sql server
-$conn = null;
-try {
-    $conn = getSqlConn();
-} catch (Exception $ex) {
-    returnWithError(json_encode($ex), 0xB4D);
-    exit();
-}
+$conn = getSqlConn();
 
 if ($conn->connect_error) {
-    returnWithError("unable to connect to sql database", 110);
-    # do error stuff
+    returnJsonHttpResponse(500, new ErrorPacket(1, "unable to connect to sql database"));
 } else {
     $statement = $conn->prepare("SELECT ID, FirstName, LastName FROM COP4331.Users WHERE Login=? AND Password=?");
     $statement->bind_param("ss", $inData['username'], $inData['password']);
     $statement->execute();
     $result = $statement->get_result();
+
+    /** @var SqlUser $row */
     $row = $result->fetch_assoc();
 
     if ($row) {
-        returnWithInfo($row['FirstName'], $row['LastName'], $row['ID']);
+        returnJsonHttpResponse(200, new LoginConfirmedPacket($row->ID, $row->FirstName, $row->LastName));
     } else {
-        returnWithError("Username or password incorrect.", 0);
+        returnWithError(0, "Username or password incorrect.");
     }
-}
-
-
-function returnWithInfo($x, $y, $z)
-{
-    returnJsonHttpResponse(200, [
-        'first_name' => $x,
-        'last_name' => $y,
-        'id' => $z
-    ]);
-}
-
-function returnWithError($error, int $code) {
-    if (!is_string($error)) {
-        $error = json_encode($error);
-    }
-    returnJsonHttpResponse(200, ['error_code'=>$code, 'reason'=>$error]);
 }

@@ -78,14 +78,18 @@ namespace ContactSearchResponsePacket {
     }
 }
 
-export interface ContactPacket {
+export interface ContactAddPacket {
     name: string,
     phone_number: string | "",
     email_address: string | ""
     user_id: number
 }
 
-export class ContactEditPacket {
+export interface ContactEditPacket extends ContactAddPacket {
+    contact_id: number
+}
+
+export class ContactDeletePacket {
     contact_id: number
     user_id: number
 }
