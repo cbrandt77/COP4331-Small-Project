@@ -1,5 +1,5 @@
 <?php
-include '../php/globals.php';
+include '../php/global_functions.php';
 
 header("Access-Control-Allow-Origin: *");
 
@@ -15,17 +15,8 @@ if ($conn->connect_error)
 }
 else
 {
-    $stmt = $conn->prepare("select Name from Contacts where Name like ? and UserID=?");
-    $contactName = "%" . $inData["search"] . "%";
-    $stmt->bind_param("ss", $contactName, $inData["userId"]);
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-
-    while($row = $result->fetch_assoc())
-    {
-        if( $searchCount > 0 )
-        {
+    $stmt = $conn->prepare("select * from Contacts where Name like ? and UserID=?");
+    $contactName = "%" . $inData["search"] . "%";                                                                           $stmt->bind_param("ss", $contactName, $inData["userId"]);                                                               $stmt->execute();                                                                                                                                                                                                                               $result = $stmt->get_result();                                                                                                                                                                                                                  while($row = $result->fetch_assoc())                                                                                    {                                                                                                                           if( $searchCount > 0 )                                                                                                  {
             $searchResults .= ",";
         }
         $searchCount++;
@@ -45,10 +36,6 @@ else
     $conn->close();
 }
 
-function getRequestInfo()
-{
-    return json_decode(file_get_contents('php://input'), true);
-}
 
 function sendResultInfoAsJson( $obj )
 {
