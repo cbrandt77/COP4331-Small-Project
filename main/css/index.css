@@ -65,8 +65,8 @@ input
 /* Applies to all elements with <... class="scripttest"> specified. */
 .scripttest 
 { 
-    color: #01ced1;
-    text-shadow: 1px 0 10px rgb(150, 112, 48);
+    color: #ffffff;
+    text-shadow: 0.5px 0.5px #00b7ff;
     text-align: center;
 }
 
@@ -163,10 +163,10 @@ input
     font-weight: 700;
 }
 
-.nocookie
+/* .nocookie
 {
-    /* background: blueviolet; */
-}
+    background: blueviolet;
+} */
 
 .logo
 {
@@ -192,13 +192,15 @@ input
     width: 100%;
     border-radius: 20px;
     background: #dadaff99;
+    justify-content: center;
+    align-items: center;
 
 }
-
+/* 
 .homebtn
 {
-    /* background: blue; */
-}
+    background: blue;
+} */
 
 .searchstuff
 {
@@ -215,4 +217,22 @@ input
     height: 30px;
     margin-bottom: 2.5%;
     font-family: Tahoma;
+}
+
+table 
+{
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+td, th 
+{
+    border: 1px solid #ffffff;
+    text-align: center;
+    padding: 10px;
+}
+  
+tr:nth-child(even) 
+{
+    background-color: #dddddd;
 }
