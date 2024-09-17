@@ -1,28 +1,34 @@
 import {Networking} from "util/networkhandling";
 import {LoginPacket, LoginConfirmedPacket, ErrorPacket, PacketFunctions} from 'types/packets'
-import JSCookieLib from 'js-cookie'
+import {onLoginSuccess} from "util/cookies";
 
 namespace Forms {
-    export function sendLoginForm(form: HTMLFormElement) {
+    import instanceOfError = PacketFunctions.instanceOfError;
+    
+    export function sendLoginForm(): void {
+        setResponseArea("")
+        
+        const form = document.forms.namedItem("login")
         const data = new FormData(form)
         
         LoginPacket.fromFormData(data)
                    .then((packet: LoginPacket) => Networking.postToLAMPAPI(packet, 'Login'))
                    .then((response: Response) => response.ok ? response.json() : Promise.reject(response.status))
-                   .then((json: LoginConfirmedPacket | ErrorPacket) => (PacketFunctions.instanceOfError(json)) ? Promise.reject(json['reason']) : json)
+                   .then((json: LoginConfirmedPacket | ErrorPacket) => (PacketFunctions.instanceOfError(json)) ? Promise.reject(json) : json)
                    .then(onLoginSuccess)
                    .catch(onLoginError);
     }
     
-    function onLoginError(reason: string) {
-        setResponseArea(`An unexpected error occurred: ${reason}`)
+    function onLoginError(error: ErrorPacket | any) {
+        if (instanceOfError(error) && error.error_code == 0) {
+            setResponseArea(error.reason)
+        } else {
+            setResponseArea(`An unexpected error occurred: ${JSON.stringify(error)}`)
+        }
+        
     }
     
-    function onLoginSuccess(packet: LoginConfirmedPacket) {
-        const userId = packet.id;
-        JSCookieLib.set('user_id', userId.toString())
-        document.location.href = "contacts.html"
-    }
+    
     
     function setResponseArea(text: string) {
         const area = document.getElementById('loginResult')
@@ -31,9 +37,4 @@ namespace Forms {
     }
 }
 
-const submitButton = document.forms
-                        .namedItem("login")
-                        ?.elements
-                        .namedItem("button");
-if (submitButton instanceof HTMLButtonElement)
-    submitButton?.addEventListener("click", () => Forms.sendLoginForm(this))
+document.getElementById("loginButton").onclick = Forms.sendLoginForm

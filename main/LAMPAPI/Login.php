@@ -1,84 +1,27 @@
 <?php
-$inData = getRequestInfo();
+include '../php/global_functions.php';
+include '../php/packets.php';
 
-# how to connect to sql server
-$conn = null;
-try {
-    $conn = new mysqli("localhost", "root", "e07f8731fe94aa4551956316f59dfc788e62b91fcb851dc1", "COP4331", null, "/var/run/mysqld/mysqld.sock");
-} catch (Exception $ex) {
-    mysqli_errno($conn);
-    returnWithError($ex);
-    exit();
-}
+setCORSHeaders();
+
+$inData = expectPacketType(new LoginPacket());
+
+$conn = getSqlConn();
 
 if ($conn->connect_error) {
-    returnWithInfo('error', 'error', 'error');
-    # do error stuff
+    returnJsonHttpResponse(500, new ErrorPacket(1, "unable to connect to sql database"));
 } else {
     $statement = $conn->prepare("SELECT ID, FirstName, LastName FROM COP4331.Users WHERE Login=? AND Password=?");
-    $statement->bind_param("ss", $inData['login'], $inData['password']);
+    $statement->bind_param("ss", $inData['username'], $inData['password']);
     $statement->execute();
     $result = $statement->get_result();
+
+    /** @var SqlUser $row */
     $row = $result->fetch_assoc();
 
     if ($row) {
-        returnWithInfo($row['firstName'], $row['lastName'], $row['id']);
+        returnJsonHttpResponse(200, new LoginConfirmedPacket($row->ID, $row->FirstName, $row->LastName));
     } else {
-
+        returnWithError(0, "Username or password incorrect.");
     }
 }
-
-function getRequestInfo()
-{
-    return json_decode(file_get_contents('php://input'), true);
-}
-
-function returnWithInfo($x, $y, $z)
-{
-    returnJsonHttpResponse(200, [
-        'firstName' => $x,
-        'lastName' => $y,
-        'id' => $z
-    ]);
-}
-
-function returnWithError($errorcode) {
-    header('Content-Type: application/json; charset=utf-8');
-    $errorcode = json_encode($errorcode);
-    returnJsonHttpResponse(200, ['error'=>$errorcode]);
-}
-
-/*
- * returnJsonHttpResponse, source: https://stackoverflow.com/a/62834046
- * @param $success: Boolean
- * @param $data: Object or Array
- */
-function returnJsonHttpResponse($httpCode, $data)
-{
-    // remove any string that could create an invalid JSON
-    // such as PHP Notice, Warning, logs...
-    ob_start();
-    ob_clean();
-
-    // this will clean up any previously added headers, to start clean
-    header_remove();
-
-    // Set the content type to JSON and charset
-    // (charset can be set to something else)
-    // add any other header you may need, gzip, auth...
-    header("Content-type: application/json; charset=utf-8");
-
-    // Set your HTTP response code, refer to HTTP documentation
-    http_response_code($httpCode);
-
-
-    // encode your PHP Object or Array into a JSON string.
-    // stdClass or array
-    echo json_encode($data);
-
-    // making sure nothing is added
-    exit();
-}
-
-# once you have the api endpoints, you have to use a tool to test the API in absence of a frontend
-# use "PostMan"

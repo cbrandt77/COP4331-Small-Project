@@ -1,5 +1,5 @@
 export namespace Networking {
-    const BASE_URL = "https://cop4331team21.site"
+    const BASE_URL = "http://cop4331team21.site"
     
     export function postJsonToServer(payload: object | BodyInit, subdir: string,
                                      additionalHeaders?: { [key: string]: any }): Promise<Response> {
@@ -15,7 +15,7 @@ export namespace Networking {
         if (typeof payload === 'object')
             payload = JSON.stringify(payload)
         
-        return fetch(BASE_URL + subdir, {
+        return fetch(/*BASE_URL +*/ subdir, {
             method: "POST",
             body: payload,
             headers: headersObj

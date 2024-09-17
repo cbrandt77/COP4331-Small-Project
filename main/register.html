@@ -4,36 +4,37 @@
 <head>
     <title>Contact Manager</title>
     <link href='css/index.css' rel='stylesheet'>
-    <script type="module" src="ts/main.js"></script>
+    <script type="module" src="ts/pages/register.ts"></script>
 </head>
 
 <body class="registerbody">
     <div class="wrapper">
         <h2>Sign Up</h2>
-        <form action="">
+        <form id="register">
             <div class="inputcombo">
                 <!-- <label class="label" for="First Name">First Name:</label> -->
-                <input class="inputbox" type="text" placeholder="First Name"/>
+                <input class="inputbox" type="text" name="first_name" placeholder="First Name"/>
             </div>
 
             <div class="inputcombo">
                 <!-- <label class="label" for="Last Name">Last Name:</label> -->
-                <input class="inputbox" type="text" placeholder="Last Name"/>
+                <input class="inputbox" type="text" name="last_name" placeholder="Last Name"/>
             </div>
 
             <div class="inputcombo">
                 <!-- <label class="label" for="Username">Username:</label> -->
-                <input class="inputbox" type="text" placeholder="Username"/>
+                <input class="inputbox" type="text" name="username" placeholder="Username"/>
             </div>
 
             <div class="inputcombo">
                 <!-- <label class="label" for="password">Password:</label> -->
-                <input class="inputbox" type="password" placeholder="Password"/>
+                <input class="inputbox" type="password" name="password" placeholder="Password"/>
             </div>
             
             <div class="submitwrap">
-                <button class="submitbox" type="submit">Submit</button>
+                <button class="submitbox" type="button" id="submit_register">Submit</button>
             </div>
+            <div id="errormessage"></div>
 
             <div class="linkwrap">
                 <a class="links" href="index.html">Home</a> &ensp;

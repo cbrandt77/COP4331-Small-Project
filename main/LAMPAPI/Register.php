@@ -1,34 +1,30 @@
 <?php
-include '../php/globals.php';
+include '../php/global_functions.php';
+include '../php/packets.php';
 
-$inData = getRequestInfo();
+setCORSHeaders();
+
+$inData = expectPacketType(new RegistrationPacket());
 
 $conn = getSqlConn();
 
 if ($conn->connect_error) {
-    returnJsonHttpResponse(200, $conn->connect_error);
+    returnJsonHttpResponse(200, new ErrorPacket(2, $conn->connect_error));
 } else {
     $stmt = $conn->prepare("Insert Into Users (FirstName, LastName, Login, Password) VALUE (?, ?, ?, ?);");
-    $stmt->bind_param("ssss", $inData["firstName"], $inData["lastName"], $inData["Login"], $inData["Password"]);
+    $stmt->bind_param("ssss", $inData->first_name, $inData->last_name, $inData->username, $inData->password);
     $stmt->execute();
-
-    if ($stmt->error) {
-        echo $stmt->error;
-    } else if ($stmt->get_result()) {
-        echo $stmt->get_result();
-    } else {
-        echo "Successful Register";
-
-    }
     $stmt->close();
+
+    $stmt2 = $conn->prepare("SELECT ID, FirstName, LastName FROM Users WHERE Login=? AND Password=?");
+    $stmt2->bind_param("ss", $inData->username, $inData->password);
+    $stmt2->execute();
+
+    /** @var SqlUser $res */
+    $res = $stmt2->get_result()->fetch_assoc();
+
+    $stmt2->close();
     $conn->close();
+    returnJsonHttpResponse(200, new LoginConfirmedPacket($res->ID, $res->FirstName, $res->LastName));
 }
 
-function getRequestInfo()
-{
-    $input = file_get_contents("php://input");
-    if(empty($input)) {
-        echo "Welcome to the Registration Page";
-    }
-    return json_decode($input, true);
-}

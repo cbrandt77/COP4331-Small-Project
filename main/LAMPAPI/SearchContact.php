@@ -1,17 +1,14 @@
 <?php
 include '../php/global_functions.php';
 
-header("Access-Control-Allow-Origin: *");
+setCORSHeaders();
 
-$inData = getRequestInfo();
-
-$searchResults = "";
-$searchCount = 0;
+$inData = expectPacketType(new ContactsSearchQueryPacket());
 
 $conn = getSqlConn();
 if ($conn->connect_error)
 {
-    returnWithError( $conn->connect_error );
+    returnJsonHttpResponse(500, new ErrorPacket(1, $conn->connect_error));
 }
 else
 {

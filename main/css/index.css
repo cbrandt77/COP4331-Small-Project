@@ -16,11 +16,23 @@ body
 {
     font-family: Tahoma;
     font-size: 14px;
-    color: #f5d76e;
+    /* color: #f5d76e; */
 
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+}
+
+.contactsbody
+{
+    font-family: Tahoma;
+    /* font-size: 14px; */
+    color: rgb(150, 112, 48);
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
     min-height: 100vh;
 }
 
@@ -31,7 +43,7 @@ h1
     font-weight: normal;
     text-align: center;
     margin-top: 5px;
-    color: #99ff00;
+    color: crimson;
 }
 
 input
@@ -54,7 +66,7 @@ input
 .scripttest 
 { 
     color: #01ced1;
-    text-shadow: 1px 0 10px rgb(150, 112, 48);;
+    text-shadow: 1px 0 10px rgb(150, 112, 48);
     text-align: center;
 }
 
@@ -86,6 +98,11 @@ input
     /* color: #e7c54a; */
 }
 
+/* .contactswrapper
+{
+    background: #dadaff99;
+} */
+
 #logoutlink
 {
     color: rgb(150, 112, 48);
@@ -108,6 +125,7 @@ input
     margin-bottom: 2.5%;
     background: #01ced1;
     font-family: Tahoma;
+    cursor: pointer;
 }
 
 .submitwrap
@@ -140,15 +158,62 @@ input
     font-weight: 700;
 }
 
-/* .inputbox input
+.links2
 {
-    width: 90%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    text-align: center;
-    align-content: center;
-} */
+    color: crimson;
+    font-weight: 700;
+}
 
-/* Applies to the element with <... id="someid"> specified. */
-#someid { color: green; }
+.nocookie
+{
+    /* background: blueviolet; */
+}
+
+.logo
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+    align-content: center;
+    text-align: center;
+}
+
+.icon
+{
+    height: 15px;  
+    width: 15px;
+}
+
+.contactstopbar
+{
+    display: flex;
+    font-size: 50px;
+    padding-left: 10px;
+    width: 100%;
+    border-radius: 20px;
+    background: #dadaff99;
+
+}
+
+.homebtn
+{
+    /* background: blue; */
+}
+
+.searchstuff
+{
+    width: 50%;
+    margin: auto;
+    /* background: red; */
+}
+
+.searchbox
+{
+    border-radius: 20px;
+    border: 2px solid black;
+    width: 75%;
+    height: 30px;
+    margin-bottom: 2.5%;
+    font-family: Tahoma;
+}
