@@ -125,6 +125,7 @@ input
     margin-bottom: 2.5%;
     background: #01ced1;
     font-family: Tahoma;
+    cursor: pointer;
 }
 
 .submitwrap
