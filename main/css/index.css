@@ -24,17 +24,10 @@ body
     min-height: 100vh;
 }
 
-.contactsbody
+/* .contactsbody
 {
-    font-family: Tahoma;
-    /* font-size: 14px; */
-    color: rgb(150, 112, 48);
-
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    min-height: 100vh;
-}
+    
+} */
 
 /* Applies to all <h1>...</h1> elements. */
 h1 
@@ -164,10 +157,17 @@ input
     font-weight: 700;
 }
 
-/* .nocookie
+.nocookie
 {
-    background: blueviolet;
-} */
+    font-family: Tahoma;
+    /* font-size: 14px; */
+    color: rgb(150, 112, 48);
+
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    min-height: 100vh;
+}
 
 .logo
 {
@@ -190,11 +190,11 @@ input
     display: flex;
     font-size: 50px;
     padding-left: 10px;
+    padding-right: 10px;
     width: 100%;
     border-radius: 20px;
     background: #dadaff99;
     justify-content: center;
-    align-items: center;
 
 }
 /* 

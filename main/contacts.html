@@ -10,28 +10,14 @@
 <body class="contactsbody">
 	<div class="contactstopbar">
 		<a class="homebtn" href="index.html">Log Out</a>
-		<!-- <a href="register.html">Sign Up</a> &ensp;
-		<span class = "active">
-			<a href="contacts.html">Contacts</a>
-		</span>
-		<br/> -->
 		<form class="searchstuff" name="searchbar">
 			<input class="searchbox" type="text" placeholder="Search"/>
-			<button type="button" id="send_search"><img id="icon" src="images\search_icon.png"></button>
+			<button type="button" id="send_search"><img id="icon" src="images\search_icon.png" width="20" height="20"></button>
 		</form>
-		<form action="addedit.html">
-			<button id="add_contact"><img id="icon" src="images\plus_icon.png"></button>
+		<form action="addedit.html" class="searchstuff">
+			<button id="add_contact"><img id="icon" src="images\plus_icon.png" width="20" height="20"></button>
 		</form>	
-		<table id="contacts_table">
-			<!-- <tr>
-				<td>ID</td>
-				<td>Name</td>
-				<td>Phone Number</td>
-				<td>Email Address</td>
-				<td><button id="editcontact">EDIT</button></td>
-				<td><button id="deletecontact">DELETE</button></td>
-			</tr> -->
-		</table>
+		<table id="searchResult"></table>
 	</div>
 
 	<div class="nocookie" id="if_no_access">
