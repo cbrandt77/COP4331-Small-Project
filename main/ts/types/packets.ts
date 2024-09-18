@@ -68,16 +68,6 @@ export interface ContactSearchResponsePacket {
     contacts: Contact[]
 }
 
-namespace ContactSearchResponsePacket {
-    function addRow(this: ContactSearchResponsePacket, tablerow: HTMLTableElement) {
-        const row = tablerow.insertRow();
-        for (let k in this) {
-            let cell = row.insertCell();
-        }
-        //TODO
-    }
-}
-
 export interface ContactAddPacket {
     name: string,
     phone_number: string | "",
@@ -108,7 +98,7 @@ export namespace PacketFunctions {
     }
     
     export async function encryptString(unhashed: string): Promise<string> {
-        return new Promise((resolve, reject) =>
+        return new Promise((resolve, _reject) =>
             // hash(unhashed, 'salty', function (err: Error | undefined, hash: string) {
             //     if (err)
             //         reject(err);
