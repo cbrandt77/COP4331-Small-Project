@@ -5,6 +5,7 @@
 	<title>Contact Manager</title>
 	<link href='css/index.css' rel='stylesheet'>
 	<script type="module" src="ts/pages/contacts.ts"></script>
+	<script type="text/javascript" src="ts\util\search.js"></script>
 </head>
 
 <body class="contactsbody">
@@ -12,14 +13,16 @@
 		<a class="homebtn" href="index.html">Log Out</a>
 		<form class="searchstuff" name="searchbar">
 			<input class="searchbox" type="text" placeholder="Search"/>
-			<button type="button" id="send_search"><img id="icon" src="images\search_icon.png" width="20" height="20"></button>
+			<button type="button" id="send_search" onclick="searchContacts();"><img id="icon" src="images\search_icon.png" width="20" height="20"></button>
 		</form>
 		<form action="addedit.html" class="searchstuff">
 			<button id="add_contact"><img id="icon" src="images\plus_icon.png" width="20" height="20"></button>
 		</form>	
-		<table id="contacts_table">
+		<span id="searchResult"></span>
+		<p id="contactsList"></p>
+		<!-- <table id="contactsList">
 
-		</table>
+		</table> -->
 	</div>
 
 	<div class="nocookie" id="if_no_access">
