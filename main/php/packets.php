@@ -25,9 +25,9 @@ class ErrorPacket
     public int $error_code;
     public string $reason;
 
-    public function __construct(int $error_code, string $reason)
+    public function __construct(ErrorCodes $error_code, string $reason)
     {
-        $this->error_code = $error_code;
+        $this->error_code = $error_code->value;
         $this->reason = $reason;
     }
 }
@@ -48,8 +48,10 @@ class ContactsSearchQueryPacket
 
 class ContactSearchResponsePacket
 {
+    /** @var OutgoingContactObject[] */
     public array $contacts;
 
+    /** @var OutgoingContactObject[] $contacts */
     public function __construct(array $contacts)
     {
         $this->contacts = $contacts;

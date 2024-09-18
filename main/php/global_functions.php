@@ -1,16 +1,21 @@
 <?php
 include 'packets.php';
 
-function returnWithError($code, $reason) {
+enum ErrorCodes: int {
+    case VALID_BUT_NONE_FOUND = 0;
+    case MYSQL_CANT_CONNECT = 1;
+    case MYSQL_NO_RESULT = 4;
+}
+
+
+function returnWithError(ErrorCodes $code, $reason) {
     returnJsonHttpResponse(200, new ErrorPacket($code, $reason));
 }
 
-/*
+/**
  * returnJsonHttpResponse, source: https://stackoverflow.com/a/62834046
- * @param $success: Boolean
- * @param $data: Object or Array
  */
-function returnJsonHttpResponse($httpCode, $data): void
+function returnJsonHttpResponse(int $httpCode, mixed $data): void
 {
     // remove any string that could create an invalid JSON
     // such as PHP Notice, Warning, logs...
@@ -33,12 +38,15 @@ function returnJsonHttpResponse($httpCode, $data): void
     // stdClass or array
     echo json_encode($data);
 
-    // making sure nothing is added
     exit();
 }
 
-function getSqlConn(): mysqli {
-    return new mysqli("127.0.0.1", "TheBest", "WeLoveCOP4331", "COP4331");
+function getSqlConnOrThrow(): mysqli {
+    $ret = new mysqli("127.0.0.1", "TheBest", "WeLoveCOP4331", "COP4331");
+    if ($ret->connect_error) {
+        returnJsonHttpResponse(500, new ErrorPacket(ErrorCodes::MYSQL_CANT_CONNECT, "Unable to connect to MySQL database: " . $ret->connect_error));
+    }
+    return $ret;
 }
 
 function getRequestInfo()
@@ -47,6 +55,7 @@ function getRequestInfo()
 }
 
 /**
+ * (The below just tells the IDE that this function returns the same type it was given)
  * @template Type
  * @param mixed<Type> $holder
  * @return Type
@@ -60,4 +69,11 @@ function expectPacketType(mixed $holder) {
 function setCORSHeaders() {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: Content-Type,*");
+}
+
+/**
+ * To close the SQL statements even when the `returnJsonHttpResponse` function exits PHP early
+ */
+function runStatementAndSendPacket(mysqli_stmt $stmt, callable $onSuccess, callable $onFail) {
+
 }

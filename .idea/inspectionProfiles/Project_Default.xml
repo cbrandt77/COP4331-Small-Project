@@ -42,6 +42,7 @@
       <option name="REPORT_ANNOTATION_NOT_PROPAGATED_TO_OVERRIDERS" value="false" />
       <option name="REPORT_NULLS_PASSED_TO_NON_ANNOTATED_METHOD" value="true" />
     </inspection_tool>
+    <inspection_tool class="PhpIllegalPsrClassPathInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="PhpMissingReturnTypeInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="PhpMultipleClassesDeclarationsInOneFile" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="PhpNoReturnAttributeCanBeAddedInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
