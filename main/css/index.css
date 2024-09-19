@@ -220,6 +220,13 @@ input
     font-family: Tahoma;
 }
 
+.popup
+{
+    text-align: center;
+    padding: 20px;
+    background-color:lightblue;
+}
+
 table 
 {
     border-collapse: collapse;

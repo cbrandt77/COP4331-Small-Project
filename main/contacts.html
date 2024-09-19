@@ -15,15 +15,39 @@
 			<input class="searchbox" type="text" placeholder="Search"/>
 			<button type="button" id="send_search" onclick="searchContacts();"><img id="icon" src="images\search_icon.png" width="20" height="20"></button>
 		</form>
-		<form action="addedit.html" class="searchstuff">
+		<!-- <form action="addedit.html" class="searchstuff">
 			<button id="add_contact"><img id="icon" src="images\plus_icon.png" width="20" height="20"></button>
-		</form>	
+		</form>	 -->
+		<button popovertarget="addedit"><img id="icon" src="images\plus_icon.png" width="50" height="20"></button>
 		<span id="searchResult"></span>
 		<!-- <p id="contacts_table"></p> -->
 		<table id="contacts_table">
 
 		</table>
 	</div>
+
+	<div popover class="popup" id="addedit">
+		<h2>Add Contact</h2>
+		<hr>
+        <input class="inputbox" type="text" name="first_name" placeholder="First Name"/>
+        <input class="inputbox" type="text" name="last_name" placeholder="Last Name"/>
+        <input class="inputbox" type="text" name="username" placeholder="Username"/>
+        <input class="inputbox" type="password" name="password" placeholder="Password"/>   
+        <div class="submitwrap">
+            <button class="submitbox" type="button" popovertarget="addedit" popovertargetaction="hide" id="submit_register">Submit</button>
+        </div>
+        <div id="errormessage"></div>
+	</div>
+
+	<div popover class="popup" id="delete">
+		<h2>Are you sure you want to delete?</h2>
+		<hr>
+        <button popovertarget="delete" popovertargetaction="hide">Yes</button>
+		<button popovertarget="delete" popovertargetaction="hide">No</button>
+	</div>
+	  
+	<!-- <button popovertarget="addedit">Click me!</button> -->
+	<button popovertarget="delete">Delete</button>
 
 	<div class="nocookie" id="if_no_access">
 		<h1>You do not have access to this page. Please <a class="links2" href="login.html">log in</a> or <a class="links2" href="register.html">register</a>!</h1>
