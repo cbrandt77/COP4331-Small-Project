@@ -5,7 +5,7 @@
 	<title>Contact Manager</title>
 	<link href='css/index.css' rel='stylesheet'>
 	<script type="module" src="ts/pages/contacts.ts"></script>
-	<script type="text/javascript" src="ts\util\search.js"></script>
+	<!-- <script type="text/javascript" src="ts\util\search.js"></script> -->
 </head>
 
 <body class="contactsbody">
@@ -13,18 +13,22 @@
 		<a class="homebtn" href="index.html">Log Out</a>
 		<form class="searchstuff" name="searchbar">
 			<input class="searchbox" type="text" placeholder="Search"/>
-			<button type="button" id="send_search" onclick="searchContacts();"><img id="icon" src="images\search_icon.png" width="20" height="20"></button>
+			<button type="button" id="send_search"><img id="icon" src="images\search_icon.png" width="20" height="20"></button>
 		</form>
-		<!-- <form action="addedit.html" class="searchstuff">
-			<button id="add_contact"><img id="icon" src="images\plus_icon.png" width="20" height="20"></button>
-		</form>	 -->
-		<button popovertarget="addedit" popovertargetaction="show"><img id="icon" src="images\plus_icon.png" width="50" height="20"></button>
-		<span id="searchResult"></span>
+	</div>
+	<span id="searchResult"></span>
 		<!-- <p id="contacts_table"></p> -->
 		<table id="contacts_table">
-
+			<tr>
+				<!-- <th>ID</th> -->
+				<th>Name</th>
+				<th>Phone Number</th>
+				<th>Email Address</th>
+				<!-- <td><button id="editcontact">EDIT</button></td>
+				<td><button id="deletecontact">DELETE</button></td> -->
+			</tr>
 		</table>
-	</div>
+	
 	<div popover class="popup" id="addedit">
 		<div class="pop_content">
 			<h2>Add Contact</h2>
@@ -51,6 +55,7 @@
 	</div>
 	  
 	<!-- <button popovertarget="addedit">Click me!</button> -->
+	<button popovertarget="addedit" popovertargetaction="show"><img id="icon" src="images\plus_icon.png" width="20" height="20"></button>
 	<button popovertarget="delete" popovertargetaction="show">Delete</button>
 
 	<div class="nocookie" id="if_no_access">

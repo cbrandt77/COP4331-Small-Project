@@ -187,7 +187,7 @@ input
 
 .contactstopbar
 {
-    display: flex;
+    display: inline-block;
     font-size: 50px;
     padding-left: 10px;
     padding-right: 10px;
@@ -195,26 +195,25 @@ input
     border-radius: 20px;
     background: #dadaff99;
     justify-content: center;
-
+    margin: auto;
 }
-/* 
-.homebtn
+
+/* .homebtn
 {
     background: blue;
 } */
 
 .searchstuff
 {
-    width: 50%;
-    margin: auto;
-    /* background: red; */
+    width: 40%;
+    float: right;
 }
 
 .searchbox
 {
     border-radius: 20px;
     border: 2px solid black;
-    width: 75%;
+    width: 80%;
     height: 30px;
     margin-bottom: 2.5%;
     font-family: Tahoma;
