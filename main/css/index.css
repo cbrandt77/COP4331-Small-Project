@@ -206,7 +206,13 @@ input
 .searchstuff
 {
     width: 40%;
-    float: right;
+    display: inline-block;
+}
+
+.loogout
+{
+    width: 30%;
+    display: inline-block;
 }
 
 .searchbox
