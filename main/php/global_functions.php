@@ -1,5 +1,4 @@
 <?php
-include 'packets.php';
 
 enum ErrorCodes: int {
     case VALID_BUT_NONE_FOUND = 0;

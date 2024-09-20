@@ -12,6 +12,7 @@
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
+    "svgo": "^3.3.2",
     "typescript": "^5.6.2",
     "url": "^0.11.4",
     "util": "^0.12.5"
@@ -21,7 +22,7 @@
   },
   "scripts": {
     "start": "parcel",
-    "build": "parcel build --public-url './' && npm run internal:dist",
+    "build": "parcel build && npm run internal:dist",
     "prod": "npm run build && npm run internal:server",
     "dev": "npm run build && php -S localhost:8000 -t dist",
     "printerrorlog": "scp root@104.248.229.249:/var/log/apache2/error.log ./error.log && node buildscripts/printerrorlog.mjs",

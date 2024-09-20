@@ -85,8 +85,8 @@ export class ContactDeletePacket {
 }
 
 export namespace PacketFunctions {
-    export function instanceOfError(object: any): object is ErrorPacket {
-        return 'error_code' in object;
+    export function instanceOfError(obj: any): obj is ErrorPacket {
+        return 'error_code' in obj;
     }
     
     export function filterErrors<T>(obj: T | ErrorPacket): T | Promise<never> {

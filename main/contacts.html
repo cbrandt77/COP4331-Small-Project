@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress HtmlRequiredAltAttribute -->
 <html lang="en-US">
 
 <head>
@@ -14,8 +15,9 @@
 			<a class="homebtn" href="index.html">Log Out</a>
 		</div>
 		<form class="searchstuff" name="searchbar">
-			<input class="searchbox" type="text" placeholder="Search"/>
-			<button type="button" id="send_search"><img id="icon" src="images\search_icon.png" width="20" height="20"></button>
+			<input class="searchbox" type="text" placeholder="Search" name="search"/>
+			<button type="button" id="send_search">
+				<img id="icon_search" src="images/search_icon.png" width="20" height="20"></button>
 		</form>
 	</div>
 	<span id="searchResult"></span>
@@ -27,7 +29,8 @@
 				<th>Phone Number</th>
 				<th>Email Address</th>
 				<th>
-					<button popovertarget="addedit" popovertargetaction="show"><img id="icon" src="images\plus_icon.png" width="20" height="20"></button>
+					<button popovertarget="addedit" popovertargetaction="show">
+						<img id="icon_plus" src="images/plus_icon.png" width="20" height="20"></button>
 					<button popovertarget="delete" popovertargetaction="show">Delete</button>
 				</th>
 				<!-- <td><button id="editcontact">EDIT</button></td>
