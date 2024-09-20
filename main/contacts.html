@@ -6,17 +6,7 @@
 	<link href='css/index.css' rel='stylesheet'>
 	<script type="module" src="ts/pages/contacts.ts"></script>
 	<script type="text/javascript" src="ts\util\search.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
-
-<!-- $(function() {
-	$("#but1").click(function() {
-	  $(".fullscreen-container").fadeTo(200, 1);
-	});
-	$("#but2").click(function() {
-	  $(".fullscreen-container").fadeOut(200);
-	});
-  }); -->
 
 <body class="contactsbody">
 	<div class="contactstopbar">
@@ -35,8 +25,8 @@
 
 		</table>
 	</div>
-	<div class="fullscreen-container">
-		<div popover class="popup" id="addedit">
+	<div popover class="popup" id="addedit">
+		<div class="pop_content">
 			<h2>Add Contact</h2>
 			<hr>
 			<input class="inputbox" type="text" name="first_name" placeholder="First Name"/>
@@ -51,8 +41,8 @@
 		</div>
 	</div>
 
-	<div class="fullscreen-container">
-		<div popover class="popup" id="delete">
+	<div popover class="popup" id="delete">
+		<div class="pop_content">
 			<h2>Are you sure you want to delete?</h2>
 			<hr>
 			<button popovertarget="delete" popovertargetaction="hide">Yes</button>
