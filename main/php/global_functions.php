@@ -69,10 +69,3 @@ function setCORSHeaders() {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: Content-Type,*");
 }
-
-/**
- * To close the SQL statements even when the `returnJsonHttpResponse` function exits PHP early
- */
-function runStatementAndSendPacket(mysqli_stmt $stmt, callable $onSuccess, callable $onFail) {
-
-}

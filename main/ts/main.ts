@@ -5,6 +5,6 @@ export namespace Constants {
     export const COOKIE_USERID = "user_id"
 }
 
-export function getUserIdCookie() {
-    return Cokie_uwu.get(Constants.COOKIE_USERID)
+export function getUserIdCookie(): number {
+    return parseInt(Cokie_uwu.get(Constants.COOKIE_USERID))
 }

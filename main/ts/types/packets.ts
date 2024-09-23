@@ -1,4 +1,6 @@
 import {Contact} from "./objects";
+import {getUserIdCookie} from "../main";
+
 
 export class LoginPacket {
     username: string;
@@ -68,20 +70,46 @@ export interface ContactSearchResponsePacket {
     contacts: Contact[]
 }
 
-export interface ContactAddPacket {
-    name: string,
-    phone_number: string | "",
-    email_address: string | ""
-    user_id: number
+export class ContactAddPacket {
+    public readonly name: string
+    public readonly phone_number: string | ""
+    public readonly email_address: string | ""
+    public readonly user_id: number
+    
+    constructor(name: string, phone_number: string | "", email_address: string | "", user_id: number) {
+        this.name = name;
+        this.phone_number = phone_number;
+        this.email_address = email_address;
+        this.user_id = user_id;
+    }
+    
+    public static fromFormData(data: FormData) {
+        return new ContactAddPacket(
+            <string>data.get('name'),
+            <string>data.get('phone_number'),
+            <string>data.get('email_address'),
+            getUserIdCookie()
+        )
+    }
 }
 
-export interface ContactEditPacket extends ContactAddPacket {
-    contact_id: number
+export class ContactEditPacket extends ContactAddPacket {
+    public contact_id: number
+    
+    constructor(name: string, phone_number: string | "", email_address: string | "", user_id: number, contact_id: number) {
+        super(name, phone_number, email_address, user_id);
+        this.contact_id = contact_id;
+    }
 }
 
 export class ContactDeletePacket {
-    contact_id: number
-    user_id: number
+    public contact_id: number
+    public user_id: number
+    
+    constructor(contact_id: number, user_id: number) {
+        this.contact_id = contact_id;
+        this.user_id = user_id;
+    }
 }
 
 export namespace PacketFunctions {
@@ -89,7 +117,7 @@ export namespace PacketFunctions {
         return 'error_code' in obj;
     }
     
-    export function filterErrors<T>(obj: T | ErrorPacket): T | Promise<never> {
+    export function rejectIfError<T>(obj: T | ErrorPacket): T | Promise<never> {
         if (instanceOfError(obj)) {
             return Promise.reject(obj.reason);
         } else {

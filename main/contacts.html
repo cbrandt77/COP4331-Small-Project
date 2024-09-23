@@ -23,52 +23,50 @@
 	<span id="searchResult"></span>
 		<!-- <p id="contacts_table"></p> -->
 		<table id="contacts_table">
-			<tr>
+			<tr id="contacts-table-header">
 				<!-- <th>ID</th> -->
 				<th>Name</th>
 				<th>Phone Number</th>
 				<th>Email Address</th>
-				<th>
-					<button popovertarget="add_popout" popovertargetaction="show">
-						<img id="icon_plus" src="images/plus_icon.png" width="20" height="20"></button>
-					<button popovertarget="delete_popout" popovertargetaction="show">Delete</button>
-				</th>
+				<th></th>
 				<!-- <td><button id="editcontact">EDIT</button></td>
 				<td><button id="deletecontact">DELETE</button></td> -->
 			</tr>
 		</table>
 	
-	<div popover class="popup" id="add_popout">
-		<div class="pop_content">
-			<h2>Add Contact<span><button type="button" class="x" popovertarget="add_popout" popovertargetaction="hide">X</button></span></h2>
+	<div popover class="popup" id="addedit">
+		<form class="pop_content" name="addedit-form" id="addedit-form">
+			<h2>
+				Add Contact
+				<span>
+					<button type="button" class="x" popovertarget="add_popout" popovertargetaction="hide">X</button>
+				</span>
+			</h2>
 			<hr>
-			<form id="add">
-				<input class="inputbox" type="text" name="name" placeholder="Name"/>
-				<input class="inputbox" type="text" name="phone_number" placeholder="Phone Number"/>
-				<input class="inputbox" type="text" name="email_address" placeholder="Email Address"/>
-				<div class="submitwrap">
-					<button class="submitbox" type="button" popovertarget="add_popout" popovertargetaction="hide" id="submit_add">Submit</button>
-				</div>
-			</form>
-			<div id="errormessage"></div>
-		</div>
+			<input class="inputbox" type="text" id="addcontact-name" name="name" placeholder="Name"/>
+			<input class="inputbox" type="text" id="addcontact-email" name="email_address" placeholder="Email Address"/>
+			<input class="inputbox" type="text" id="addcontact-phone" name="phone_number" placeholder="Phone Number"/>
+			<div class="submitwrap">
+				<button class="submitbox" type="button" popovertarget="addedit" popovertargetaction="hide" id="addcontact-submit">Submit</button>
+				<button type="button" popovertarget="addedit" popovertargetaction="hide">Back</button>
+			</div>
+			<div id="addedit-errormessage"></div>
+		</form>
 	</div>
 	
-	<!-- <div popover class="popup" id="edit_popout"> -->
-	<div id="edit_popout" style="display: none;">
-		<div class="pop_content">
+	<div popover class="popup" id="editcontact-popover">
+		<form class="pop_content" name="editcontact-form">
 			<h2>Edit Contact<span><button type="button" class="x" id="no_edit">X</button></span></h2>
 			<hr>
-			<form id="edit">
-				<input class="inputbox" type="text" name="name" placeholder="Name"/>
-				<input class="inputbox" type="text" name="phone_number" placeholder="Phone Number"/>
-				<input class="inputbox" type="text" name="email_address" placeholder="Email Address"/>
-				<div class="submitwrap">
-					<button class="submitbox" type="button" id="submit_edit">Submit</button>
-				</div>
-			</form>
-			<div id="errormessage"></div>
-		</div>
+			<input class="inputbox" type="text" id="editcontact-name" name="name"/>
+			<input class="inputbox" type="text" id="editcontact-email" name="email_address"/>
+			<input class="inputbox" type="text" id="editcontact-phone" name="phone_number"/>
+			<div class="submitwrap">
+				<button class="submitbox" type="button" popovertarget="editcontactpopover" popovertargetaction="hide" name="submit" id="editcontact_submit">Submit</button>
+				<button type="button" popovertarget="editcontactpopover" popovertargetaction="hide">Back</button>
+			</div>
+			<div id="editcontact_errormessage"></div>
+		</form>
 	</div>
 
 	<!-- <div popover class="popup" id="delete_popout"> -->
@@ -76,8 +74,8 @@
 		<div class="pop_content">
 			<h2>Are you sure you want to delete?</h2>
 			<hr>
-			<button id="submit_delete">Yes</button>
-			<button id="no_delete">No</button>
+			<button type="button" popovertarget="delete" popovertargetaction="hide" id="delete-true">Yes</button>
+			<button type="button" popovertarget="delete" popovertargetaction="hide" id="delete-false">No</button>
 		</div>
 	</div>
 

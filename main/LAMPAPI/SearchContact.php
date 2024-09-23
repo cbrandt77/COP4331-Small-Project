@@ -18,7 +18,6 @@ $result = $stmt->get_result();
 /** @var OutgoingContactObject[] $arr */
 $arr = [];
 
-
 while (($row = $result->fetch_object('\SqlContact'))) {
     $arr[] = OutgoingContactObject::fromSqlContact($row);
 }

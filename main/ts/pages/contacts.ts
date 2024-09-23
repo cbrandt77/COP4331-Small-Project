@@ -1,13 +1,22 @@
 import {getUserIdCookie} from "../main";
 import {Networking} from "util/networkhandling";
-import {ContactSearchResponsePacket, ContactsSearchQueryPacket} from "types/packets";
-import {Contact} from "types/objects";
+import {
+    ContactAddPacket,
+    ContactDeletePacket,
+    ContactSearchResponsePacket,
+    ContactsSearchQueryPacket,
+    PacketFunctions
+} from "types/packets";
+
+import {Contact, EmailAddress, PhoneNumberE016} from "types/objects";
 
 function checkCookie() {
     if (getUserIdCookie()) {
-        document.getElementById("if_no_access").remove()
+        document.querySelectorAll('.nocookie')
+                .forEach(n => n.remove())
     } else {
-        document.getElementById("if_has_access").remove()
+        document.querySelectorAll(":not(.nocookie)")
+                .forEach(n => n.remove())
     }
 }
 
@@ -16,62 +25,121 @@ checkCookie()
 const CONSTANTS = {
     searchBarFormName: 'searchbar',
     contactsTableId: 'contacts_table',
-    searchBarName: 'search_bar_input',
-    editButtonClassName: 'contact-editbutton',
+    searchBarInputName: 'search_bar_input',
+    editButtonClassName: 'contactbutton contact-editbutton',
     editButtonId: (contact_id: number) => `contact-editbutton-${contact_id}`,
-    deleteButtonClassName: 'contact-deletebutton',
-    deleteButtonId: (contact_id: number) => `contact-deletebutton-${contact_id}`
+    deleteButtonClassName: 'contactbutton contact-deletebutton',
+    deleteButtonId: (contact_id: number) => `contact-deletebutton-${contact_id}`,
+    contactTableHeaderId: 'contacts-table-header'
 }
 
 function doSearch() {
     const form = document.forms.namedItem(CONSTANTS.searchBarFormName)
     const data = new FormData(form)
     const table: HTMLTableElement = <HTMLTableElement>document.getElementById(CONSTANTS.contactsTableId)
-    Networking.postToLAMPAPI(new ContactsSearchQueryPacket(parseInt(getUserIdCookie()), <string>data.get(CONSTANTS.searchBarName)), "SearchContact")
+    clearContactsTable()
+    
+    Networking.postToLAMPAPI(new ContactsSearchQueryPacket(getUserIdCookie(), <string>data.get(CONSTANTS.searchBarInputName)), "SearchContact")
               .then(response => response.ok ? response.json() : Promise.reject(response.status))
+              .then(PacketFunctions.rejectIfError)
               .then((obj: ContactSearchResponsePacket) => {
                   for (let contact of obj.contacts)
                       contactToRow(contact, table)
               })
 }
 
-function makeEditButton(contact_id: number) {
-    const button = new HTMLButtonElement();
+
+function clearContactsTable() {
+    let trs = document.querySelectorAll('#contacts_table tr');
+    
+    trs.forEach((tr) => {
+        if (tr.id !== CONSTANTS.contactTableHeaderId)
+            tr.remove();
+    });
+}
+
+function makeEditButton(contact: Contact) {
+    const button = document.createElement('button')
     button.innerText = 'EDIT'
     button.className = CONSTANTS.editButtonClassName
-    button.id = CONSTANTS.editButtonId(contact_id)
-    button.onclick = () => editPop(contact_id)
+    button.id = CONSTANTS.editButtonId(contact.contact_id)
+    button.onclick = () => showEditContactDialog(contact)
     return button;
 }
 
-function makeDeleteButton(contact_id: number) {
-    const button = new HTMLButtonElement();
+function makeDeleteButton(contact: Contact) {
+    const button = document.createElement('button')
     button.innerText = 'DELETE'
     button.className = CONSTANTS.deleteButtonClassName
-    button.id = CONSTANTS.deleteButtonId(contact_id)
-    button.onclick = () => deletePop(contact_id)
+    button.id = CONSTANTS.deleteButtonId(contact.contact_id)
+    button.onclick = () => deleteContact(contact.contact_id)
     return button;
 }
 
-function editPop(contact_id: number) {
-    document.getElementById('edit_popout').style.display = 'block';
-    document.getElementById('submit_edit').onclick = () => editContact(contact_id)
-    document.getElementById('no_edit').onclick = () => document.getElementById('edit_popout').style.display = 'none';
-    // TODO
+function addContact() {
+    const form = document.forms.namedItem('addedit-form');
+    if (!form)
+        throw 'No form found for addedit-form'
+    
+    const data = new FormData(form);
+    
+    Networking.postToLAMPAPI(ContactAddPacket.fromFormData(data), 'AddContact')
+              .then(res => res.ok ? res.json() : Promise.reject(res))
+              .then(PacketFunctions.rejectIfError)
+              .then(() => document.getElementById('addedit').hidePopover())
+              .catch((err) => document.getElementById('addedit-errormessage').innerText = JSON.stringify(err))
 }
 
-function editContact(contact_id: number) {
-    // TODO
+function showEditContactDialog(contact: Contact) {
+    const form = document.forms.namedItem('editcontact-form');
+    (<HTMLInputElement>form.elements.namedItem('name')).value = contact.name;
+    (<HTMLInputElement>form.elements.namedItem('email_address')).value = contact.email_address;
+    (<HTMLInputElement>form.elements.namedItem('phone_number')).value = contact.phone_number;
+    
+    (<HTMLInputElement>form.elements.namedItem('name')).placeholder = contact.name;
+    (<HTMLInputElement>form.elements.namedItem('email_address')).placeholder = contact.email_address;
+    (<HTMLInputElement>form.elements.namedItem('phone_number')).placeholder = contact.phone_number;
+    
+    (<HTMLButtonElement>form.elements.namedItem('submit')).onclick = () => doEditContact(form, contact.contact_id)
+    document.getElementById('editcontact-popover').showPopover()
 }
 
-function deletePop(contact_id: number) {
-    document.getElementById('delete_popout').style.display = 'block';
-    document.getElementById('submit_delete').onclick = () => deleteContact(contact_id)
-    document.getElementById('no_delete').onclick = () => document.getElementById('delete_popout').style.display = 'none';
+function doEditContact(form: HTMLFormElement, id: number) {
+    const data = new FormData(form);
+    Networking.postToLAMPAPI(new Contact(
+                  <string>data.get('name'),
+                  <PhoneNumberE016>data.get('phone_number'),
+                  <EmailAddress>data.get('email_address'),
+                  id,
+                  getUserIdCookie()
+              ), 'Update')
+              .then(response => response.ok ? response.json() : Promise.reject(response))
+              .then(PacketFunctions.rejectIfError)
+              .then(() => {
+                  clearForm(document.forms.namedItem('editcontact-form'))
+                  document.getElementById('editcontact-popover').hidePopover()
+              }).catch(err => {
+        document.getElementById('editcontact_errormessage').innerText = JSON.stringify(err)
+    })
+}
+
+function clearForm(f: HTMLFormElement) {
+    for (let k in f) {
+        const el = f[k]
+        if (el instanceof HTMLInputElement) {
+            el['value'] = "";
+            el['placeholder'] = "";
+        }
+    }
 }
 
 function deleteContact(contact_id: number) {
-    // TODO
+    Networking.postToLAMPAPI(new ContactDeletePacket(contact_id, getUserIdCookie()), 'DeleteContact')
+              .then(res => res.ok ? res.json() : Promise.reject(res))
+              .then(PacketFunctions.rejectIfError)
+              .then(doSearch)
+              .then(() => document.getElementById('delete_popout').hidePopover())
+              .catch()
 }
 
 function contactToRow(contact: Contact, table: HTMLTableElement) {
@@ -82,8 +150,10 @@ function contactToRow(contact: Contact, table: HTMLTableElement) {
         cell.id = `contact-${property}-${contact.contact_id}`
         cell.innerText = <string>contact[property as keyof Contact]
     }
-    row.insertCell().appendChild(makeEditButton(contact.contact_id))
-    row.insertCell().appendChild(makeDeleteButton(contact.contact_id))
+    const buttonscell = row.insertCell();
+    buttonscell.appendChild(makeEditButton(contact));
+    buttonscell.appendChild(makeDeleteButton(contact))
 }
 
-document.getElementById("send_search").onclick = doSearch
+document.getElementById("send_search").onclick = doSearch;
+(document.getElementById('addcontact-submit') as HTMLFormElement).onclick = addContact
