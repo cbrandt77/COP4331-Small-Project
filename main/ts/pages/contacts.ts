@@ -40,7 +40,7 @@ function makeEditButton(contact_id: number) {
     button.innerText = 'EDIT'
     button.className = CONSTANTS.editButtonClassName
     button.id = CONSTANTS.editButtonId(contact_id)
-    button.onclick = () => editContact(contact_id)
+    button.onclick = () => addeditPop(contact_id)
     return button;
 }
 
@@ -49,12 +49,25 @@ function makeDeleteButton(contact_id: number) {
     button.innerText = 'DELETE'
     button.className = CONSTANTS.deleteButtonClassName
     button.id = CONSTANTS.deleteButtonId(contact_id)
-    button.onclick = () => deleteContact(contact_id)
+    button.onclick = () => deletePop(contact_id)
     return button;
+}
+
+function addeditPop(contact_id: number) {
+    document.getElementById('addedit_popout').style.display = 'block';
+    document.getElementById('submit_addedit').onclick = () => editContact(contact_id)
+    document.getElementById('no_addedit').onclick = () => document.getElementById('addedit_popout').style.display = 'none';
+    // TODO
 }
 
 function editContact(contact_id: number) {
     // TODO
+}
+
+function deletePop(contact_id: number) {
+    document.getElementById('delete_popout').style.display = 'block';
+    document.getElementById('submit_delete').onclick = () => deleteContact(contact_id)
+    document.getElementById('no_delete').onclick = () => document.getElementById('delete_popout').style.display = 'none';
 }
 
 function deleteContact(contact_id: number) {
