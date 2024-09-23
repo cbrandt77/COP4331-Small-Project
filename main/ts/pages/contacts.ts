@@ -40,7 +40,7 @@ function makeEditButton(contact_id: number) {
     button.innerText = 'EDIT'
     button.className = CONSTANTS.editButtonClassName
     button.id = CONSTANTS.editButtonId(contact_id)
-    button.onclick = () => addeditPop(contact_id)
+    button.onclick = () => editPop(contact_id)
     return button;
 }
 
@@ -53,10 +53,10 @@ function makeDeleteButton(contact_id: number) {
     return button;
 }
 
-function addeditPop(contact_id: number) {
-    document.getElementById('addedit_popout').style.display = 'block';
-    document.getElementById('submit_addedit').onclick = () => editContact(contact_id)
-    document.getElementById('no_addedit').onclick = () => document.getElementById('addedit_popout').style.display = 'none';
+function editPop(contact_id: number) {
+    document.getElementById('edit_popout').style.display = 'block';
+    document.getElementById('submit_edit').onclick = () => editContact(contact_id)
+    document.getElementById('no_edit').onclick = () => document.getElementById('edit_popout').style.display = 'none';
     // TODO
 }
 

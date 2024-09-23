@@ -29,7 +29,7 @@
 				<th>Phone Number</th>
 				<th>Email Address</th>
 				<th>
-					<button popovertarget="addedit_popout" popovertargetaction="show">
+					<button popovertarget="add_popout" popovertargetaction="show">
 						<img id="icon_plus" src="images/plus_icon.png" width="20" height="20"></button>
 					<button popovertarget="delete_popout" popovertargetaction="show">Delete</button>
 				</th>
@@ -38,18 +38,37 @@
 			</tr>
 		</table>
 	
-	<!-- <div popover class="popup" id="addedit_popout"> -->
-	<div id="addedit_popout" style="display: none;">
+	<div popover class="popup" id="add_popout">
 		<div class="pop_content">
 			<h2>Add Contact</h2>
 			<hr>
-			<input class="inputbox" type="text" name="name" placeholder="Name"/>
-			<input class="inputbox" type="text" name="phone_number" placeholder="Phone Number"/>
-			<input class="inputbox" type="text" name="email_address" placeholder="Email Address"/>
-			<div class="submitwrap">
-				<button class="submitbox" type="button" popovertarget="addedit_popout" popovertargetaction="hide" id="submit_addedit">Submit</button>
-				<button popovertarget="addedit_popout" popovertargetaction="hide">Back</button>
-			</div>
+			<form id="add">
+				<input class="inputbox" type="text" name="name" placeholder="Name"/>
+				<input class="inputbox" type="text" name="phone_number" placeholder="Phone Number"/>
+				<input class="inputbox" type="text" name="email_address" placeholder="Email Address"/>
+				<div class="submitwrap">
+					<button class="submitbox" type="button" popovertarget="add_popout" popovertargetaction="hide" id="submit_add">Submit</button>
+				</div>
+			</form>
+			<button popovertarget="add_popout" popovertargetaction="hide">Back</button>
+			<div id="errormessage"></div>
+		</div>
+	</div>
+	
+	<!-- <div popover class="popup" id="edit_popout"> -->
+	<div id="edit_popout" style="display: none;">
+		<div class="pop_content">
+			<h2>Edit Contact</h2>
+			<hr>
+			<form id="edit">
+				<input class="inputbox" type="text" name="name" placeholder="Name"/>
+				<input class="inputbox" type="text" name="phone_number" placeholder="Phone Number"/>
+				<input class="inputbox" type="text" name="email_address" placeholder="Email Address"/>
+				<div class="submitwrap">
+					<button class="submitbox" type="button" id="submit_edit">Submit</button>
+				</div>
+			</form>
+			<button id="no_edit">Back</button>
 			<div id="errormessage"></div>
 		</div>
 	</div>
@@ -59,8 +78,8 @@
 		<div class="pop_content">
 			<h2>Are you sure you want to delete?</h2>
 			<hr>
-			<button popovertarget="delete_popout" popovertargetaction="hide" id="submit_delete">Yes</button>
-			<button popovertarget="delete_popout" popovertargetaction="hide">No</button>
+			<button id="submit_delete">Yes</button>
+			<button id="no_delete">No</button>
 		</div>
 	</div>
 
