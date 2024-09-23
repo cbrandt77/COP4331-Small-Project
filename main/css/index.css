@@ -248,6 +248,15 @@ input
     margin-right: auto;
 }
 
+.x
+{
+    position: absolute;
+    top: -130%;
+    right: -3%;
+    padding: 4px 8px;
+    background-color: rgb(255, 255, 255, 0);
+}
+
 table 
 {
     border-collapse: collapse;

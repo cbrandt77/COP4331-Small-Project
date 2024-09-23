@@ -40,7 +40,7 @@
 	
 	<div popover class="popup" id="add_popout">
 		<div class="pop_content">
-			<h2>Add Contact</h2>
+			<h2>Add Contact<span><button type="button" class="x" popovertarget="add_popout" popovertargetaction="hide">X</button></span></h2>
 			<hr>
 			<form id="add">
 				<input class="inputbox" type="text" name="name" placeholder="Name"/>
@@ -50,7 +50,6 @@
 					<button class="submitbox" type="button" popovertarget="add_popout" popovertargetaction="hide" id="submit_add">Submit</button>
 				</div>
 			</form>
-			<button popovertarget="add_popout" popovertargetaction="hide">Back</button>
 			<div id="errormessage"></div>
 		</div>
 	</div>
