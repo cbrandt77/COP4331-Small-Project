@@ -37,7 +37,6 @@
     "main/index.html",
     "main/contacts.html",
     "main/login.html",
-    "main/register.html",
-    "main/addedit.html"
+    "main/register.html"
   ]
 }
