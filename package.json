@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "parcel",
-    "build": "rm -r dist && parcel build --no-cache && npm run internal:dist",
+    "build": "parcel build --no-cache && npm run internal:dist",
     "prod": "npm run build && npm run internal:server",
     "dev": "npm run build && php -S localhost:8000 -t dist",
     "printerrorlog": "scp root@104.248.229.249:/var/log/apache2/error.log ./error.log && node buildscripts/printerrorlog.mjs",
