@@ -173,7 +173,7 @@ input
   
 .homebtn span:after 
 {
-    content: "\AB";
+    content: "<";
     position: absolute;
     opacity: 0;
     top: 0;
