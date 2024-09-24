@@ -100,10 +100,10 @@ function addContact() {
               .then(res => res.ok ? res.json() : Promise.reject(res))
               .then(PacketFunctions.rejectIfError)
               .then(() => {
-                  document.getElementById('addcontact-popover').hidePopover()
                   clearForm(form)
+                  document.getElementById('addcontact-popover').hidePopover()
+                  doSearch()
               })
-              .then(() => doSearch())
               .catch((err) => document.getElementById('addcontact-errormessage').innerText = JSON.stringify(err))
 }
 
@@ -160,7 +160,6 @@ function deleteContact(contact_id: number) {
               .then(() => {
                   document.getElementById('deletecontact-popover').hidePopover()
                   doSearch()
-                  clearForm(document.forms.namedItem('addcontact-form'))
               })
               .catch()
 }
