@@ -41,7 +41,13 @@ function returnJsonHttpResponse(int $httpCode, mixed $data): void
 }
 
 function getSqlConnOrThrow(): mysqli {
-    $ret = new mysqli("127.0.0.1", "TheBest", "WeLoveCOP4331", "COP4331");
+    $ret = null;
+    try {
+        $ret = new mysqli("127.0.0.1", "TheBest", "WeLoveCOP4331", "COP4331");
+    } catch (Error $e) {
+        returnJsonHttpResponse(500, new ErrorPacket(ErrorCodes::MYSQL_CANT_CONNECT, "Unable to connect to MySQL database: " . $e));
+        exit();
+    }
     if ($ret->connect_error) {
         returnJsonHttpResponse(500, new ErrorPacket(ErrorCodes::MYSQL_CANT_CONNECT, "Unable to connect to MySQL database: " . $ret->connect_error));
     }

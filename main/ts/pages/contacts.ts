@@ -25,7 +25,7 @@ checkCookie()
 const CONSTANTS = {
     searchBarFormName: 'searchbar',
     contactsTableId: 'contacts_table',
-    searchBarInputName: 'search_bar_input',
+    searchBarInputName: 'search',
     editButtonClassName: 'contactbutton contact-editbutton',
     editButtonId: (contact_id: number) => `contact-editbutton-${contact_id}`,
     deleteButtonClassName: 'contactbutton contact-deletebutton',
@@ -67,12 +67,17 @@ function makeEditButton(contact: Contact) {
     return button;
 }
 
+function showDeletePopup(contact: Contact) {
+    document.getElementById('delete-true').onclick = () => deleteContact(contact.contact_id)
+    document.getElementById('delete_popout').showPopover()
+}
+
 function makeDeleteButton(contact: Contact) {
     const button = document.createElement('button')
     button.innerText = 'DELETE'
     button.className = CONSTANTS.deleteButtonClassName
     button.id = CONSTANTS.deleteButtonId(contact.contact_id)
-    button.onclick = () => deleteContact(contact.contact_id)
+    button.onclick = () => showDeletePopup(contact)
     return button;
 }
 
@@ -118,14 +123,15 @@ function doEditContact(form: HTMLFormElement, id: number) {
               .then(() => {
                   clearForm(document.forms.namedItem('editcontact-form'))
                   document.getElementById('editcontact-popover').hidePopover()
-              }).catch(err => {
-        document.getElementById('editcontact_errormessage').innerText = JSON.stringify(err)
-    })
+              })
+              .catch(err => {
+                  document.getElementById('editcontact_errormessage').innerText = JSON.stringify(err)
+              })
 }
 
-function clearForm(f: HTMLFormElement) {
-    for (let k in f) {
-        const el = f[k]
+function clearForm(form: HTMLFormElement) {
+    for (let key in form) {
+        const el = form[key]
         if (el instanceof HTMLInputElement) {
             el['value'] = "";
             el['placeholder'] = "";
@@ -134,7 +140,6 @@ function clearForm(f: HTMLFormElement) {
 }
 
 function deleteContact(contact_id: number) {
-    document.getElementById('deletecontact-popover').showPopover()
     Networking.postToLAMPAPI(new ContactDeletePacket(contact_id, getUserIdCookie()), 'DeleteContact')
               .then(res => res.ok ? res.json() : Promise.reject(res))
               .then(PacketFunctions.rejectIfError)
