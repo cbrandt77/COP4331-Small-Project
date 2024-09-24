@@ -101,7 +101,7 @@ function addContact() {
               .then(PacketFunctions.rejectIfError)
               .then(() => {
                   document.getElementById('addcontact-popover').hidePopover()
-                  clearForm(document.forms.namedItem('addcontact-form'))
+                  clearForm(form)
               })
               .then(() => doSearch())
               .catch((err) => document.getElementById('addcontact-errormessage').innerText = JSON.stringify(err))
@@ -146,8 +146,9 @@ function clearForm(form: HTMLFormElement) {
     for (let key in form) {
         const el = form[key]
         if (el instanceof HTMLInputElement) {
-            el['value'] = "";
-            el['placeholder'] = "";
+            el.value = "";
+            el.placeholder = "";
+            el.innerText = '';
         }
     }
 }
@@ -156,9 +157,11 @@ function deleteContact(contact_id: number) {
     Networking.postToLAMPAPI(new ContactDeletePacket(contact_id, getUserIdCookie()), 'DeleteContact')
               .then(res => res.ok ? res.json() : Promise.reject(res))
               .then(PacketFunctions.rejectIfError)
-              .then(doSearch)
-              .then(() => document.getElementById('deletecontact-popover').hidePopover())
-              .then(() => doSearch())
+              .then(() => {
+                  document.getElementById('deletecontact-popover').hidePopover()
+                  doSearch()
+                  clearForm(document.forms.namedItem('addcontact-form'))
+              })
               .catch()
 }
 
