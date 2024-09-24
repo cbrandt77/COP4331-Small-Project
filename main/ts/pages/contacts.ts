@@ -9,15 +9,22 @@ import {
 } from "types/packets";
 
 import {Contact, EmailAddress, PhoneNumberE016} from "types/objects";
+import JSCookieLib from "js-cookie";
+
+JSCookieLib.remove("cookieconsent_status")
 
 function checkCookie() {
     if (getUserIdCookie()) {
         document.querySelectorAll('.nocookie')
-                .forEach(n => n.remove())
-    } else {
-        document.querySelectorAll(":not(.nocookie)")
-                .forEach(n => n.remove())
+                .forEach(n => {
+                    if (!(n instanceof HTMLBodyElement))
+                        n.remove()
+                })
     }
+    // else {
+    //     document.querySelectorAll(":not(.nocookie)")
+    //             .forEach(n => n.remove())
+    // }
 }
 
 checkCookie()
@@ -46,6 +53,7 @@ function doSearch() {
                   for (let contact of obj.contacts)
                       contactToRow(contact, table)
               })
+              .catch()
 }
 
 
@@ -69,7 +77,7 @@ function makeEditButton(contact: Contact) {
 
 function showDeletePopup(contact: Contact) {
     document.getElementById('delete-true').onclick = () => deleteContact(contact.contact_id)
-    document.getElementById('delete_popout').showPopover()
+    document.getElementById('deletecontact-popover').showPopover()
 }
 
 function makeDeleteButton(contact: Contact) {
@@ -91,7 +99,10 @@ function addContact() {
     Networking.postToLAMPAPI(ContactAddPacket.fromFormData(data), 'AddContact')
               .then(res => res.ok ? res.json() : Promise.reject(res))
               .then(PacketFunctions.rejectIfError)
-              .then(() => document.getElementById('addcontact-popover').hidePopover())
+              .then(() => {
+                  document.getElementById('addcontact-popover').hidePopover()
+                  clearForm(document.forms.namedItem('addcontact-form'))
+              })
               .catch((err) => document.getElementById('addcontact-errormessage').innerText = JSON.stringify(err))
 }
 
@@ -123,6 +134,7 @@ function doEditContact(form: HTMLFormElement, id: number) {
               .then(() => {
                   clearForm(document.forms.namedItem('editcontact-form'))
                   document.getElementById('editcontact-popover').hidePopover()
+                  doSearch()
               })
               .catch(err => {
                   document.getElementById('editcontact_errormessage').innerText = JSON.stringify(err)
@@ -150,7 +162,7 @@ function deleteContact(contact_id: number) {
 
 function contactToRow(contact: Contact, table: HTMLTableElement) {
     const row = table.insertRow();
-    for (let property in contact) {
+    for (let property of (['name', 'phone_number', 'email_address'] as (keyof Contact)[])) {
         const cell = row.insertCell();
         cell.className = `contact-${property}`;
         cell.id = `contact-${property}-${contact.contact_id}`
@@ -162,4 +174,5 @@ function contactToRow(contact: Contact, table: HTMLTableElement) {
 }
 
 document.getElementById("send_search").onclick = doSearch;
+document.getElementById("logout-true").onclick = () => JSCookieLib.remove('user_id');
 (document.getElementById('addcontact-submit') as HTMLFormElement).onclick = addContact
