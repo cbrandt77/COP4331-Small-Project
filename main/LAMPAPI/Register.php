@@ -19,7 +19,7 @@ $stmt2->bind_param("ss", $inData->username, $inData->password);
 $stmt2->execute();
 
 /** @var SqlUser $res */
-$res = $stmt2->get_result()->fetch_assoc();
+$res = $stmt2->get_result()->fetch_object('\SqlUser');
 
 $stmt2->close();
 $conn->close();

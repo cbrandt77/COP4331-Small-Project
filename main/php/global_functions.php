@@ -4,6 +4,7 @@ enum ErrorCodes: int {
     case VALID_BUT_NONE_FOUND = 0;
     case MYSQL_CANT_CONNECT = 1;
     case MYSQL_NO_RESULT = 4;
+    case USER_ALREADY_EXISTS=5;
 }
 
 

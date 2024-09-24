@@ -103,6 +103,7 @@ function addContact() {
                   document.getElementById('addcontact-popover').hidePopover()
                   clearForm(document.forms.namedItem('addcontact-form'))
               })
+              .then(() => doSearch())
               .catch((err) => document.getElementById('addcontact-errormessage').innerText = JSON.stringify(err))
 }
 
@@ -157,6 +158,7 @@ function deleteContact(contact_id: number) {
               .then(PacketFunctions.rejectIfError)
               .then(doSearch)
               .then(() => document.getElementById('deletecontact-popover').hidePopover())
+              .then(() => doSearch())
               .catch()
 }
 
