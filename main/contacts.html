@@ -10,17 +10,18 @@
 </head>
 
 <body class="contactsbody">
+	<h2 class="title">Welcome to your Contacts!!!</h2>
 	<div class="contactstopbar">
 		<div class="loogout">
 			<a class="homebtn" href="index.html">Log Out</a>
 		</div>
 		<form class="searchstuff" name="searchbar">
 			<input class="searchbox" type="text" placeholder="Search" name="search"/>
-			<button type="button" id="send_search">
+			<button type="button" id="send_search" class="icon">
 				<img id="icon_search" src="images/search_icon.png" width="20" height="20">
 			</button>
 		</form>
-		<button popovertarget="add_popout" popovertargetaction="show">
+		<button popovertarget="addcontact-popover" popovertargetaction="show" class="icon">
 			<img id="icon_plus" src="images/plus_icon.png" width="20" height="20">
 		</button>
 	
@@ -30,21 +31,34 @@
 		<table id="contacts_table">
 			<tr id="contacts-table-header">
 				<!-- <th>ID</th> -->
-				<th>Name</th>
-				<th>Phone Number</th>
-				<th>Email Address</th>
-				<th></th>
+				<th class="contacts_header">Name</th>
+				<th class="contacts_header">Phone Number</th>
+				<th class="contacts_header">Email Address</th>
+				<th class="contacts_header">Contact Actions</th>
 				<!-- <td><button id="editcontact">EDIT</button></td>
 				<td><button id="deletecontact">DELETE</button></td> -->
 			</tr>
+			<tr>
+				<td>Alfreds Futterkiste</td>
+				<td>Maria Anders</td>
+				<td>Germany</td>
+				<td><button type="button" class="contactbutton">Test</button><button type="button" class="contactbutton">Test</button></td>
+			  </tr>
+			  <tr>
+				<td>Centro comercial Moctezuma</td>
+				<td>Francisco Chang</td>
+				<td>Mexico</td>
+				<td><button type="button" class="contactbutton">Test</button><button type="button" class="contactbutton">Test</button></td>
+			  </tr>
+
 		</table>
 	
-	<div popover class="popup" id="addedit">
-		<form class="pop_content" name="addedit-form" id="addedit-form">
+	<div popover class="popup" id="addcontact-popover">
+		<form class="pop_content" name="addcontact-form" id="addcontact-form">
 			<h2>
 				Add Contact
 				<span>
-					<button type="button" class="x" popovertarget="add_popout" popovertargetaction="hide">X</button>
+					<button type="button" class="x" popovertarget="addcontact-popover" popovertargetaction="hide">X</button>
 				</span>
 			</h2>
 			<hr>
@@ -52,23 +66,21 @@
 			<input class="inputbox" type="text" id="addcontact-email" name="email_address" placeholder="Email Address"/>
 			<input class="inputbox" type="text" id="addcontact-phone" name="phone_number" placeholder="Phone Number"/>
 			<div class="submitwrap">
-				<button class="submitbox" type="button" popovertarget="addedit" popovertargetaction="hide" id="addcontact-submit">Submit</button>
-				<button type="button" popovertarget="addedit" popovertargetaction="hide">Back</button>
+				<button class="submitbox" type="button" popovertarget="addcontact-popover" popovertargetaction="hide" id="addcontact-submit">Submit</button>
 			</div>
-			<div id="addedit-errormessage"></div>
+			<div id="addcontact-errormessage"></div>
 		</form>
 	</div>
 	
 	<div popover class="popup" id="editcontact-popover">
 		<form class="pop_content" name="editcontact-form">
-			<h2>Edit Contact<span><button type="button" class="x" id="no_edit">X</button></span></h2>
+			<h2>Edit Contact<span><button type="button" class="x" id="no_edit" popovertarget="editcontact-popover" popovertargetaction="hide">X</button></span></h2>
 			<hr>
 			<input class="inputbox" type="text" id="editcontact-name" name="name"/>
 			<input class="inputbox" type="text" id="editcontact-email" name="email_address"/>
 			<input class="inputbox" type="text" id="editcontact-phone" name="phone_number"/>
 			<div class="submitwrap">
 				<button class="submitbox" type="button" popovertarget="editcontactpopover" popovertargetaction="hide" name="submit" id="editcontact_submit">Submit</button>
-				<button type="button" popovertarget="editcontactpopover" popovertargetaction="hide">Back</button>
 			</div>
 			<div id="editcontact_errormessage"></div>
 		</form>

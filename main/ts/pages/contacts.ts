@@ -77,17 +77,17 @@ function makeDeleteButton(contact: Contact) {
 }
 
 function addContact() {
-    const form = document.forms.namedItem('addedit-form');
+    const form = document.forms.namedItem('addcontact-form');
     if (!form)
-        throw 'No form found for addedit-form'
+        throw 'No form found for addcontact-form'
     
     const data = new FormData(form);
     
     Networking.postToLAMPAPI(ContactAddPacket.fromFormData(data), 'AddContact')
               .then(res => res.ok ? res.json() : Promise.reject(res))
               .then(PacketFunctions.rejectIfError)
-              .then(() => document.getElementById('addedit').hidePopover())
-              .catch((err) => document.getElementById('addedit-errormessage').innerText = JSON.stringify(err))
+              .then(() => document.getElementById('addcontact-popover').hidePopover())
+              .catch((err) => document.getElementById('addcontact-errormessage').innerText = JSON.stringify(err))
 }
 
 function showEditContactDialog(contact: Contact) {
