@@ -134,11 +134,12 @@ function clearForm(f: HTMLFormElement) {
 }
 
 function deleteContact(contact_id: number) {
+    document.getElementById('deletecontact-popover').showPopover()
     Networking.postToLAMPAPI(new ContactDeletePacket(contact_id, getUserIdCookie()), 'DeleteContact')
               .then(res => res.ok ? res.json() : Promise.reject(res))
               .then(PacketFunctions.rejectIfError)
               .then(doSearch)
-              .then(() => document.getElementById('delete_popout').hidePopover())
+              .then(() => document.getElementById('deletecontact-popover').hidePopover())
               .catch()
 }
 
