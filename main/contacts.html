@@ -13,7 +13,7 @@
 	<h2 class="title">Welcome to your Contacts!!!</h2>
 	<div class="contactstopbar">
 		<div class="loogout">
-			<a class="homebtn" href="index.html">Log Out</a>
+			<button popovertarget="logout-popover" popovertargetaction="show" class="homebtn"><span>Log Out</span></button>
 		</div>
 		<form class="searchstuff" name="searchbar">
 			<input class="searchbox" type="text" placeholder="Search" name="search"/>
@@ -42,23 +42,28 @@
 				<td>Alfreds Futterkiste</td>
 				<td>Maria Anders</td>
 				<td>Germany</td>
-				<td><button type="button" class="contactbutton">Test</button><button type="button" class="contactbutton">Test</button></td>
-			  </tr>
-			  <tr>
+				<td>
+					<button popovertarget="editcontact-popover" popovertargetaction="show" class="contactbutton">TestEdit</button>
+					<button popovertarget="deletecontact-popover" popovertargetaction="show" class="contactbutton">TestDelete</button>
+				</td>
+			</tr>
+			<tr>
 				<td>Centro comercial Moctezuma</td>
 				<td>Francisco Chang</td>
 				<td>Mexico</td>
-				<td><button type="button" class="contactbutton">Test</button><button type="button" class="contactbutton">Test</button></td>
-			  </tr>
-
+				<td>
+					<button popovertarget="editcontact-popover" popovertargetaction="show" class="contactbutton">TestEdit</button>
+					<button popovertarget="deletecontact-popover" popovertargetaction="show" class="contactbutton">TestDelete</button>
+				</td>
+			</tr>
 		</table>
 	
 	<div popover class="popup" id="addcontact-popover">
-		<form class="pop_content" name="addcontact-form" id="addcontact-form">
+		<form class="pop_content" name="addcontact-form">
 			<h2>
 				Add Contact
 				<span>
-					<button type="button" class="x" popovertarget="addcontact-popover" popovertargetaction="hide">X</button>
+					<button type="button" class="exit" popovertarget="addcontact-popover" popovertargetaction="hide">&#10005;</button>
 				</span>
 			</h2>
 			<hr>
@@ -74,7 +79,7 @@
 	
 	<div popover class="popup" id="editcontact-popover">
 		<form class="pop_content" name="editcontact-form">
-			<h2>Edit Contact<span><button type="button" class="x" id="no_edit" popovertarget="editcontact-popover" popovertargetaction="hide">X</button></span></h2>
+			<h2>Edit Contact<span><button type="button" class="exit" id="no_edit" popovertarget="editcontact-popover" popovertargetaction="hide">&#10005;</button></span></h2>
 			<hr>
 			<input class="inputbox" type="text" id="editcontact-name" name="name"/>
 			<input class="inputbox" type="text" id="editcontact-email" name="email_address"/>
@@ -86,13 +91,23 @@
 		</form>
 	</div>
 
-	<!-- <div popover class="popup" id="delete_popout"> -->
-	<div id="delete_popout" style="display: none;">
-		<div class="pop_content">
+	<div popover class="popup" id="deletecontact-popover">
+		<div class="pop_content" id="notaddedit">
 			<h2>Are you sure you want to delete?</h2>
 			<hr>
-			<button type="button" popovertarget="delete" popovertargetaction="hide" id="delete-true">Yes</button>
-			<button type="button" popovertarget="delete" popovertargetaction="hide" id="delete-false">No</button>
+			<button type="button" popovertarget="deletecontact-popover" popovertargetaction="hide" id="delete-true">Yes</button>
+			<button type="button" popovertarget="deletecontact-popover" popovertargetaction="hide" id="delete-false">No</button>
+		</div>
+	</div>
+
+	<div popover class="popup" id="logout-popover">
+		<div class="pop_content" id="notaddedit">
+			<h2>Are you sure you want to log out?</h2>
+			<hr>
+			<a href="index.html">
+				<button type="button" popovertarget="logout-popover" popovertargetaction="hide" id="logout-true">Yes</button>
+			</a>
+			<button type="button" popovertarget="logout-popover" popovertargetaction="hide" id="logout-false">No</button>
 		</div>
 	</div>
 

@@ -59,7 +59,7 @@ input
 .scripttest 
 { 
     color: #ffffff;
-    text-shadow: 0.5px 0.5px #00b7ff;
+    text-shadow: 0.5px 0.5px rgb(0, 183, 255);
     text-align: center;
 }
 
@@ -84,10 +84,11 @@ input
 
 .wrapper h2
 {
+    padding-top: 10px;
     font-size: 36px;
     text-align: center;
     color: rgb(150, 112, 48);
-    text-shadow: 1px 1px 2px lightcyan;
+    text-shadow: 1px 1px 2px rgb(0, 183, 255);
     /* color: #e7c54a; */
 }
 
@@ -171,11 +172,58 @@ input
 
 .title
 {
+    font-family: Tahoma;
     font-size: 60px;
     font-weight: normal;
     text-align: center;
-    color: rgb(92, 183, 211);
-    text-shadow: 1.5px 1.5px 1.5px rgb(150, 112, 48);
+    color: rgba(255, 193, 87, 0.5); 
+    -webkit-text-stroke: 1px rgb(92, 183, 211);
+}
+
+.homebtn
+{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 10px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.homebtn span 
+{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.homebtn span:after 
+{
+    content: '\00AB';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -10px;
+    transition: 0.5s;
+}
+  
+.homebtn:hover span 
+{
+    padding-left: 25px;
+}
+  
+.homebtn:hover span:after 
+{
+    opacity: 1;
+    left: 0;
 }
 
 .logo
@@ -208,6 +256,7 @@ input
     border-radius: 20px;
     background: #dadaff99;
     justify-content: center;
+    align-content: center;
     margin: auto;
 }
 
@@ -248,26 +297,33 @@ input
 .pop_content
 {
     width: 40%;
+    height: 40%;
     text-align: center;
     padding: 20px;
     background-color: rgb(92, 183, 211);
     display: block;
     margin-left: auto;
     margin-right: auto;
+    align-content: center;
 }
 
-.x
+#notaddedit
 {
-    position: absolute;
-    top: -130%;
-    right: -3%;
-    padding: 4px 8px;
+    height: 12%;
+}
+
+.exit
+{
+    position: fixed;
+    top: 29%;
+    right: 29%;
+    padding: 4px 6px;
     background-color: rgb(255, 255, 255, 0);
     border: none;
     transition: 0.4s;
 }
 
-.x:hover
+.exit:hover
 {
     background-color: rgb(61, 124, 143);
 }
