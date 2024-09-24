@@ -9,7 +9,7 @@
 </head>
 
 <body class="contactsbody">
-	<h2 class="title">Welcome to your Contacts!!!</h2>
+	<h2 class="title">Welcome to your Contacts!</h2>
 	<div class="contactstopbar">
 		<div class="loogout">
 			<button popovertarget="logout-popover" popovertargetaction="show" class="homebtn"><span>Log Out</span></button>
@@ -32,24 +32,6 @@
 				<th class="contacts_header">Phone Number</th>
 				<th class="contacts_header">Email Address</th>
 				<th class="contacts_header">Contact Actions</th>
-			</tr>
-			<tr>
-				<td>Alfreds Futterkiste</td>
-				<td>Maria Anders</td>
-				<td>Germany</td>
-				<td>
-					<button popovertarget="editcontact-popover" popovertargetaction="show" class="contactbutton">TestEdit</button>
-					<button popovertarget="deletecontact-popover" popovertargetaction="show" class="contactbutton">TestDelete</button>
-				</td>
-			</tr>
-			<tr>
-				<td>Centro comercial Moctezuma</td>
-				<td>Francisco Chang</td>
-				<td>Mexico</td>
-				<td>
-					<button popovertarget="editcontact-popover" popovertargetaction="show" class="contactbutton">TestEdit</button>
-					<button popovertarget="deletecontact-popover" popovertargetaction="show" class="contactbutton">TestDelete</button>
-				</td>
 			</tr>
 		</table>
 	
@@ -87,7 +69,7 @@
 	</div>
 
 	<div popover class="popup" id="deletecontact-popover">
-		<div class="pop_content" id="notaddedit">
+		<div class="pop_content notaddedit">
 			<h2>Are you sure you want to delete?</h2>
 			<hr>
 			<button type="button" popovertarget="deletecontact-popover" popovertargetaction="hide" id="delete-true">Yes</button>
@@ -96,7 +78,7 @@
 	</div>
 
 	<div popover class="popup" id="logout-popover">
-		<div class="pop_content" id="notaddedit">
+		<div class="pop_content notaddedit">
 			<h2>Are you sure you want to log out?</h2>
 			<hr>
 			<a href="index.html">
