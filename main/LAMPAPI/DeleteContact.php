@@ -11,7 +11,7 @@ $conn = getSqlConnOrThrow();
 $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID=? AND UserID=?;"); // delete specific contact
 $stmt->bind_param("ss", $inData->contact_id, $inData->user_id);
 
-$wasSuccessful = !$stmt->execute();
+$wasSuccessful = $stmt->execute();
 
 $stmt->execute();
 $stmt->close();
